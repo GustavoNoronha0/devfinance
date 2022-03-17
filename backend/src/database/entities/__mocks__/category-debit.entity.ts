@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-export const CategoryReceivement = {
+export const CategoryDebit = {
   id: faker.random.uuid(),
   title: faker.random.words(),
   description: faker.random.words(),
