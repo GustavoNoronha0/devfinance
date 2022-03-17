@@ -1,5 +1,5 @@
 import { Account } from './account.interface';
 
-export interface FindAllAccountService {
+export interface FindAllAccountsService {
   find(account: string): Promise<Account[]>;
 }
