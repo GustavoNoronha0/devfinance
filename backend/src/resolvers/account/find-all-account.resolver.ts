@@ -2,7 +2,7 @@ import { Inject } from '@nestjs/common';
 import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { Account } from '@/database/entities/account.entity';
 import { FindAllAccountsService as IFindAllAccountsService } from '@/interfaces/account/find-all-accounts.interface';
-import { FindAllAccountsService } from '@/services/account/find-all-accounts.service';
+import { FindAllAccountsService } from '@/services/account/find-all-account.service';
 // TODO: add e2e tests
 @Resolver(() => Account)
 export class FindAllAccountsResolver {
