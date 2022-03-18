@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { Account } from '@/database/entities/__mocks__/account.entity';
-import { FindAllAccountsService } from '@/services/account/find-all-accounts.service';
+import { FindAllAccountsService } from '@/services/account/find-all-account.service';
 import { FindAllAccountsResolver } from './find-all-account.resolver';
 
 jest.mock('@/services/find-all-accounts.service');

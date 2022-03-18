@@ -3,7 +3,7 @@ import faker from 'faker';
 import { CategoryDebit } from '@/database/entities/__mocks__/category-debit.entity';
 import { CreateCategoryDebitService } from '@/services/category-debit/create-category-debit.service';
 import { CreateCategoryDebitResolver } from './create-category-debit.resolver';
-import { CreateCategoryDebitInput } from '@/interfaces/category-debit/create-category-debit.interface';
+import { CategoryDebitInput } from '@/interfaces/category-debit/create-category-debit.interface';
 
 jest.mock('@/services/create-categoryDebit.service');
 describe('CreateCategoryDebitResolver', () => {
@@ -19,7 +19,7 @@ describe('CreateCategoryDebitResolver', () => {
   };
   it('should create a CategoryDebit', async () => {
     const { sut, service } = await makeSut();
-    const input: CreateCategoryDebitInput = {
+    const input: CategoryDebitInput = {
       account: faker.random.uuid(),
       title: faker.random.words(),
       description: faker.internet.email(),

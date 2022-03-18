@@ -1,10 +1,10 @@
 import { CategoryDebit } from './category-debit.interface';
-export interface CategoryDebitData {
+export interface CategoryDebitInput {
   account: string
   title: string
   description: string
 }
 
 export interface CreateCategoryDebitService {
-  create(input: CategoryDebitData): Promise<CategoryDebit>;
+  create(input: CategoryDebitInput): Promise<CategoryDebit>;
 }
