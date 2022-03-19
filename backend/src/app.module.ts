@@ -34,6 +34,36 @@ import { FindAllCategoryDebitsService } from './services/category-debit/find-all
 import { FindAllCategoryDebitsResolver } from './resolvers/category-debit/find-all-category-debits.resolver';
 import { UpdateCategoryDebitService } from './services/category-debit/update-category-debit.service';
 import { UpdateCategoryDebitResolver } from './resolvers/category-debit/update-category-debit.resolver';
+import { CreateCategoryReceivementResolver } from './resolvers/category-receivement/create-category-receivement.resolver';
+import { DeleteCategoryReceivementResolver } from './resolvers/category-receivement/delete-category-receivement.resolver';
+import { FindAllCategoryReceivementsResolver } from './resolvers/category-receivement/find-all-category-receivements.resolver';
+import { FindCategoryReceivementResolver } from './resolvers/category-receivement/find-category-receivement.resolver';
+import { UpdateCategoryReceivementResolver } from './resolvers/category-receivement/update-category-receivement.resolver';
+import { CreateDebitResolver } from './resolvers/debit/create-debit.resolver';
+import { DeleteDebitResolver } from './resolvers/debit/delete-debit.resolver';
+import { FindAllDebitsResolver } from './resolvers/debit/find-all-debits.resolver';
+import { FindDebitResolver } from './resolvers/debit/find-debit.resolver';
+import { UpdateDebitResolver } from './resolvers/debit/update-debit.resolver';
+import { CreateReceivementResolver } from './resolvers/receivement/create-receivement.resolver';
+import { DeleteReceivementResolver } from './resolvers/receivement/delete-receivement.resolver';
+import { FindAllReceivementsResolver } from './resolvers/receivement/find-all-receivements.resolver';
+import { FindReceivementResolver } from './resolvers/receivement/find-receivement.resolver';
+import { UpdateReceivementResolver } from './resolvers/receivement/update-receivement.resolver';
+import { CreateCategoryReceivementService } from './services/category-receivement/create-category-receivement.service';
+import { DeleteCategoryReceivementService } from './services/category-receivement/delete-category-receivement.service';
+import { FindAllCategoryReceivementsService } from './services/category-receivement/find-all-category-receivements.service';
+import { FindCategoryReceivementService } from './services/category-receivement/find-category-receivement.service';
+import { UpdateCategoryReceivementService } from './services/category-receivement/update-category-receivement.service';
+import { CreateDebitService } from './services/debit/create-debit.service';
+import { DeleteDebitService } from './services/debit/delete-debit.service';
+import { FindAllDebitsService } from './services/debit/find-all-debits.service';
+import { FindDebitService } from './services/debit/find-debit.service';
+import { UpdateDebitService } from './services/debit/update-debit.service';
+import { CreateReceivementService } from './services/receivement/create-receivement.service';
+import { DeleteReceivementService } from './services/receivement/delete-receivement.service';
+import { FindAllReceivementsService } from './services/receivement/find-all-receivements.service';
+import { FindReceivementService } from './services/receivement/find-receivement.service';
+import { UpdateReceivementService } from './services/receivement/update-receivement.service';
 @Module({
   imports: [
     GraphQLModule.forRoot(graphqlConfig),
@@ -76,6 +106,36 @@ import { UpdateCategoryDebitResolver } from './resolvers/category-debit/update-c
     FindAllCategoryDebitsResolver,
     UpdateCategoryDebitService,
     UpdateCategoryDebitResolver,
+    CreateCategoryReceivementService,
+    CreateCategoryReceivementResolver,
+    DeleteCategoryReceivementService,
+    DeleteCategoryReceivementResolver,
+    FindCategoryReceivementService,
+    FindCategoryReceivementResolver,
+    FindAllCategoryReceivementsService,
+    FindAllCategoryReceivementsResolver,
+    UpdateCategoryReceivementService,
+    UpdateCategoryReceivementResolver,
+    CreateDebitService,
+    CreateDebitResolver,
+    DeleteDebitService,
+    DeleteDebitResolver,
+    FindDebitService,
+    FindDebitResolver,
+    FindAllDebitsService,
+    FindAllDebitsResolver,
+    UpdateDebitService,
+    UpdateDebitResolver,
+    CreateReceivementService,
+    CreateReceivementResolver,
+    DeleteReceivementService,
+    DeleteReceivementResolver,
+    FindReceivementService,
+    FindReceivementResolver,
+    FindAllReceivementsService,
+    FindAllReceivementsResolver,
+    UpdateReceivementService,
+    UpdateReceivementResolver,
   ],
 })
 export class AppModule {
