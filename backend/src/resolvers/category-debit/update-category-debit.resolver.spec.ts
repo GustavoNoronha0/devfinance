@@ -17,7 +17,7 @@ describe('UpdateCategoryDebitResolver', () => {
     const sutTypes = { service, sut: resolver };
     return sutTypes;
   };
-  it('should update a TODO', async () => {
+  it('should update a CategoryDebit', async () => {
     const { sut, service } = await makeSut();
     const input: UpdateCategoryDebitInput = {
       title: faker.random.words(),

@@ -17,7 +17,7 @@ describe('UpdateCategoryReceivementResolver', () => {
     const sutTypes = { service, sut: resolver };
     return sutTypes;
   };
-  it('should update a TODO', async () => {
+  it('should update a CategoryReceivement', async () => {
     const { sut, service } = await makeSut();
     const input: UpdateCategoryReceivementInput = {
       title: faker.random.words(),

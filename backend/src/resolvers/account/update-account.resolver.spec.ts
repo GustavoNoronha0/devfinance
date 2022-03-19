@@ -17,7 +17,7 @@ describe('UpdateAccountResolver', () => {
     const sutTypes = { service, sut: resolver };
     return sutTypes;
   };
-  it('should update a TODO', async () => {
+  it('should update a Account', async () => {
     const { sut, service } = await makeSut();
     const input: UpdateAccountInput = {
       name: faker.random.words(),
