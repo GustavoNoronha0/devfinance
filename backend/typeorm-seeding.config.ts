@@ -1,5 +1,5 @@
 import * as path from 'path';
-// TODO: add type
+
 const typeormForSeedConfig = {
   type: 'postgres',
   host: 'localhost',
