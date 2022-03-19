@@ -3,7 +3,7 @@ import { Account } from '@/database/entities/__mocks__/account.entity';
 import { DeleteAccountService } from '@/services/account/delete-account.service';
 import { DeleteAccountResolver } from './delete-account.resolver';
 
-jest.mock('@/services/delete-account.service');
+jest.mock('@/services/account/delete-account.service');
 describe('DeleteAccountResolver', () => {
   type SutTypes = { sut: DeleteAccountResolver; service: DeleteAccountService };
   const makeSut = async (): Promise<SutTypes> => {

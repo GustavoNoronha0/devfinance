@@ -5,7 +5,7 @@ import { UpdateAccountInput } from '@/inputs/account/update-account.input';
 import { UpdateAccountService } from '@/services/account/update-account.service';
 import { UpdateAccountResolver } from './update-account.resolver';
 
-jest.mock('@/services/update-account.service');
+jest.mock('@/services/account/update-account.service');
 describe('UpdateAccountResolver', () => {
   type SutTypes = { sut: UpdateAccountResolver; service: UpdateAccountService };
   const makeSut = async (): Promise<SutTypes> => {

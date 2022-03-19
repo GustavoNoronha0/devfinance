@@ -5,7 +5,7 @@ import { CreateCategoryReceivementService } from '@/services/category-receivemen
 import { CreateCategoryReceivementResolver } from './create-category-receivement.resolver';
 import { CategoryReceivementInput } from '@/interfaces/category-receivement/create-category-receivement.interface';
 
-jest.mock('@/services/create-category-receivement.service');
+jest.mock('@/services/category-receivement/create-category-receivement.service');
 describe('CreateCategoryReceivementResolver', () => {
   type SutTypes = { sut: CreateCategoryReceivementResolver; service: CreateCategoryReceivementService };
   const makeSut = async (): Promise<SutTypes> => {

@@ -3,7 +3,7 @@ import { Account } from '@/database/entities/__mocks__/account.entity';
 import { FindAllAccountsService } from '@/services/account/find-all-account.service';
 import { FindAllAccountsResolver } from './find-all-account.resolver';
 
-jest.mock('@/services/find-all-accounts.service');
+jest.mock('@/services/account/find-all-accounts.service');
 describe('FindAllAccountsResolver', () => {
   type SutTypes = { sut: FindAllAccountsResolver; service: FindAllAccountsService };
   const makeSut = async (): Promise<SutTypes> => {

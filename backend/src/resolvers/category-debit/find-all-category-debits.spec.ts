@@ -3,7 +3,7 @@ import { CategoryDebit } from '@/database/entities/__mocks__/category-debit.enti
 import { FindAllCategoryDebitsService } from '@/services/category-debit/find-all-category-debits.service';
 import { FindAllCategoryDebitsResolver } from './find-all-category-debits.resolver';
 
-jest.mock('@/services/find-all-categoryDebits.service');
+jest.mock('@/services/category-debit/find-all-category-debits.service');
 describe('FindAllCategoryDebitsResolver', () => {
   type SutTypes = { sut: FindAllCategoryDebitsResolver; service: FindAllCategoryDebitsService };
   const makeSut = async (): Promise<SutTypes> => {

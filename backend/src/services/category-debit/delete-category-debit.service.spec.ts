@@ -3,7 +3,7 @@ import { CategoryDebit } from '@/database/entities/__mocks__/category-debit.enti
 import { CategoryDebitRepository } from '@/repositories/category-debit.repository';
 import { DeleteCategoryDebitService } from '@/services/category-debit/delete-category-debit.service';
 
-jest.mock('@/repositories/categoryDebit.repository');
+jest.mock('@/repositories/category-debit.repository');
 describe('DeleteCategoryDebitService', () => {
   type SutTypes = { sut: DeleteCategoryDebitService; repository: CategoryDebitRepository };
   const makeSut = async (): Promise<SutTypes> => {

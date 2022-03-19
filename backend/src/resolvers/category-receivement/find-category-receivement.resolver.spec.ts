@@ -3,7 +3,7 @@ import { CategoryReceivement } from '@/database/entities/__mocks__/category-rece
 import { FindCategoryReceivementService } from '@/services/category-receivement/find-category-receivement.service';
 import { FindCategoryReceivementResolver } from './find-category-receivement.resolver';
 
-jest.mock('@/services/find-category-receivement.service');
+jest.mock('@/services/category-receivement/find-category-receivement.service');
 describe('FindCategoryReceivementResolver', () => {
   type SutTypes = { sut: FindCategoryReceivementResolver; service: FindCategoryReceivementService };
   const makeSut = async (): Promise<SutTypes> => {

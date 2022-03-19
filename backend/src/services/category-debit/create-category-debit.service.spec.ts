@@ -5,7 +5,7 @@ import { CategoryDebitRepository } from '@/repositories/category-debit.repositor
 import { CreateCategoryDebitService } from './create-category-debit.service';
 import { CategoryDebitInput } from '@/interfaces/category-debit/create-category-debit.interface';
 
-jest.mock('@/repositories/categoryDebit.repository');
+jest.mock('@/repositories/category-debit.repository');
 describe('CreateCategoryDebitService', () => {
   type SutTypes = { sut: CreateCategoryDebitService; repository: CategoryDebitRepository };
   const makeSut = async (): Promise<SutTypes> => {

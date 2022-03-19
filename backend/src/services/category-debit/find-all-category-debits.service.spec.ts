@@ -4,7 +4,7 @@ import { CategoryDebitRepository } from '@/repositories/category-debit.repositor
 import { FindAllCategoryDebitsService } from './find-all-category-debits.service';
 import { Account } from '@/database/entities/__mocks__/account.entity';
 
-jest.mock('@/repositories/categoryDebit.repository');
+jest.mock('@/repositories/category-debits.repository');
 describe('FindAllCategoryDebitsService', () => {
   type SutTypes = { sut: FindAllCategoryDebitsService; repository: CategoryDebitRepository };
   const makeSut = async (): Promise<SutTypes> => {

@@ -5,7 +5,7 @@ import { CreateAccountService } from '@/services/account/create-account.service'
 import { CreateAccountResolver } from './create-account.resolver';
 import { CreateAccountInput } from '@/interfaces/account/create-account.interface';
 
-jest.mock('@/services/create-account.service');
+jest.mock('@/services/account/create-account.service');
 describe('CreateAccountResolver', () => {
   type SutTypes = { sut: CreateAccountResolver; service: CreateAccountService };
   const makeSut = async (): Promise<SutTypes> => {
