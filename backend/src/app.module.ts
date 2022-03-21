@@ -64,6 +64,8 @@ import { DeleteReceivementService } from './services/receivement/delete-receivem
 import { FindAllReceivementsService } from './services/receivement/find-all-receivements.service';
 import { FindReceivementService } from './services/receivement/find-receivement.service';
 import { UpdateReceivementService } from './services/receivement/update-receivement.service';
+import { FindAccountReportsService } from './services/reports/find-account-reports.service';
+import { FindAccountReportsResolver } from './resolvers/reports/find-account-reports.resolver';
 @Module({
   imports: [
     GraphQLModule.forRoot(graphqlConfig),
@@ -136,6 +138,8 @@ import { UpdateReceivementService } from './services/receivement/update-receivem
     FindAllReceivementsResolver,
     UpdateReceivementService,
     UpdateReceivementResolver,
+    FindAccountReportsService,
+    FindAccountReportsResolver,
   ],
 })
 export class AppModule {
