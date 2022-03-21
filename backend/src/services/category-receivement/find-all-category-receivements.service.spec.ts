@@ -4,7 +4,7 @@ import { CategoryReceivementRepository } from '@/repositories/category-receiveme
 import { FindAllCategoryReceivementsService } from './find-all-category-receivements.service';
 import { Account } from '@/database/entities/__mocks__/account.entity';
 
-jest.mock('@/repositories/category-receivement.repository');
+jest.mock('@/repositories/category-receivements.repository');
 describe('FindAllCategoryReceivementsService', () => {
   type SutTypes = { sut: FindAllCategoryReceivementsService; repository: CategoryReceivementRepository };
   const makeSut = async (): Promise<SutTypes> => {
@@ -18,6 +18,10 @@ describe('FindAllCategoryReceivementsService', () => {
   };
   it('should find all CategoryReceivements', async () => {
     const { sut } = await makeSut();
-    expect(await sut.find(Account.id)).toMatchObject([CategoryReceivement]);
+    const input = {
+      filters: { account: Account.id },
+      paginate: { page: 1, limit: 10 }
+    }
+    expect(await sut.find(input)).toMatchObject([CategoryReceivement]);
   });
 });

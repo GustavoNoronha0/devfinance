@@ -1,12 +1,57 @@
 import { Injectable } from '@nestjs/common';
 import { CategoryReceivement } from '@/database/entities/category-receivement.entity';
-import { CategoryReceivementRepository } from '@/repositories/category-receivement.repository';
-import { Account } from '@/database/entities/account.entity';
+import { paginateRaw, Pagination } from 'nestjs-typeorm-paginate';
+import { Connection } from 'typeorm';
+import FindAllCategoryReceivementsInput from './filters/find-all-category-receivements.input';
 
 @Injectable()
 export class FindAllCategoryReceivementsService {
-  constructor(private categoryReceivementRepository: CategoryReceivementRepository) { }
-  async find(account: Account['id']): Promise<CategoryReceivement[]> {
-    return this.categoryReceivementRepository.find({ where: { account } });
+  constructor(private connection: Connection) { }
+  async find(input: FindAllCategoryReceivementsInput): Promise<Pagination<CategoryReceivement>> {
+    const queryBuilder = this.connection.createQueryBuilder();
+    queryBuilder.from((innerQueryBuilder) => {
+      innerQueryBuilder
+        .from(CategoryReceivement, 'categoryReceivement')
+        .leftJoinAndSelect('categoryReceivement.account', 'account')
+        .where('account.id = :accountId', { accountId: input.filters.account });
+      const shouldFilterByDate =
+        input.filters?.initialDate && input.filters?.finalDate;
+      const hasOnlyCreatedAtGte =
+        input.filters?.initialDate && !input.filters?.finalDate;
+      if (hasOnlyCreatedAtGte) {
+        innerQueryBuilder.andWhere(
+          'categoryReceivement.createdAt >= :initialDate',
+          {
+            initialDate: input.filters!.initialDate,
+          },
+        );
+      }
+      if (shouldFilterByDate) {
+        innerQueryBuilder.andWhere(
+          'categoryReceivement.createdAt BETWEEN :initialDate AND :finalDate',
+          {
+            initialDate: input.filters!.initialDate,
+            finalDate: input.filters!.finalDate,
+          },
+        );
+      }
+      if (input.filters?.other) {
+        innerQueryBuilder.andWhere(
+          '(categoryReceivement.title ILIKE :other OR categoryReceivement.description ILIKE :other)',
+          { other: `%${input.filters!.other}%` },
+        );
+      }
+      return innerQueryBuilder;
+    }, 'categoryReceivement');
+    const pagination = await paginateRaw(queryBuilder, input.paginate);
+    // @ts-ignore
+    pagination.items = pagination.items.map((item) => ({
+      id: item.categoryReceivement_id,
+      title: item.categoryReceivement_title,
+      description: item.categoryReceivement_description,
+      createdAt: item.categoryReceivement_createdAt,
+      updatedAt: item.categoryReceivement_updatedAt
+    }));
+    return pagination;
   }
 }
