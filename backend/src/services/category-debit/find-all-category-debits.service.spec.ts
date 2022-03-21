@@ -18,6 +18,10 @@ describe('FindAllCategoryDebitsService', () => {
   };
   it('should find all CategoryDebits', async () => {
     const { sut } = await makeSut();
-    expect(await sut.find(Account.id)).toMatchObject([CategoryDebit]);
+    const input = {
+      filters: { account: Account.id },
+      paginate: { page: 1, limit: 10 }
+    }
+    expect(await sut.find(input)).toMatchObject([CategoryDebit]);
   });
 });
