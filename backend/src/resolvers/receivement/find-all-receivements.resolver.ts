@@ -4,13 +4,14 @@ import { Receivement } from '@/database/entities/receivement.entity';
 import { FindAllReceivementsService as IFindAllReceivementsService } from '@/interfaces/receivement/find-all-receivements.interface';
 import { FindAllReceivementsService } from '@/services/receivement/find-all-receivements.service';
 import { Account } from '@/database/entities/account.entity';
+import CategoryReceivementPaginate from './paginate/category-receivements-input.paginate';
 
-@Resolver(() => Receivement)
+@Resolver(() => CategoryReceivementPaginate)
 export class FindAllReceivementsResolver {
   constructor(
     @Inject(FindAllReceivementsService) private findAllReceivements: IFindAllReceivementsService,
   ) { }
-  @Query(() => [Receivement])
+  @Query(() => CategoryReceivementPaginate)
   async receivements(@Args('account', { type: () => ID }) account: Account['id'],): Promise<Receivement[]> {
     return this.findAllReceivements.find(account);
   }
