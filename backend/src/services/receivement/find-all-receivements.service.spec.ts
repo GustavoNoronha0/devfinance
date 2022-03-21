@@ -18,6 +18,10 @@ describe('FindAllReceivementsService', () => {
   };
   it('should find all Receivements', async () => {
     const { sut } = await makeSut();
-    expect(await sut.find(Account.id)).toMatchObject([Receivement]);
+    const input = {
+      filters: { account: Account.id },
+      paginate: { page: 1, limit: 10 }
+    }
+    expect(await sut.find(input)).toMatchObject([Receivement]);
   });
 });

@@ -1,10 +1,9 @@
 import { Inject } from '@nestjs/common';
-import { Args, ID, Query, Resolver } from '@nestjs/graphql';
-import { Receivement } from '@/database/entities/receivement.entity';
+import { Args, Query, Resolver } from '@nestjs/graphql';
 import { FindAllReceivementsService as IFindAllReceivementsService } from '@/interfaces/receivement/find-all-receivements.interface';
 import { FindAllReceivementsService } from '@/services/receivement/find-all-receivements.service';
-import { Account } from '@/database/entities/account.entity';
 import CategoryReceivementPaginate from './paginate/category-receivements-input.paginate';
+import FindAllReceivementsInput from '@/services/receivement/filters/find-all-receivements.input';
 
 @Resolver(() => CategoryReceivementPaginate)
 export class FindAllReceivementsResolver {
@@ -12,7 +11,7 @@ export class FindAllReceivementsResolver {
     @Inject(FindAllReceivementsService) private findAllReceivements: IFindAllReceivementsService,
   ) { }
   @Query(() => CategoryReceivementPaginate)
-  async receivements(@Args('account', { type: () => ID }) account: Account['id'],): Promise<Receivement[]> {
-    return this.findAllReceivements.find(account);
+  async receivements(@Args('input') input: FindAllReceivementsInput,): ReturnType<FindAllReceivementsService['find']> {
+    return this.findAllReceivements.find(input);
   }
 }
