@@ -1,17 +1,17 @@
 import { Inject } from '@nestjs/common';
-import { Args, ID, Query, Resolver } from '@nestjs/graphql';
-import { Debit } from '@/database/entities/debit.entity';
+import { Args, Query, Resolver } from '@nestjs/graphql';
 import { FindAllDebitsService as IFindAllDebitsService } from '@/interfaces/debit/find-all-debits.interface';
 import { FindAllDebitsService } from '@/services/debit/find-all-debits.service';
-import { Account } from '@/database/entities/account.entity';
+import FindAllDebitsInput from '@/services/debit/filters/find-all-debits.input';
+import CategoryReceivementPaginate from './paginate/category-receivements-input.paginate';
 
-@Resolver(() => Debit)
+@Resolver(() => CategoryReceivementPaginate)
 export class FindAllDebitsResolver {
   constructor(
     @Inject(FindAllDebitsService) private findAllDebits: IFindAllDebitsService,
   ) { }
-  @Query(() => [Debit])
-  async debits(@Args('account', { type: () => ID }) account: Account['id'],): Promise<Debit[]> {
-    return this.findAllDebits.find(account);
+  @Query(() => CategoryReceivementPaginate)
+  async debits(@Args('input') input: FindAllDebitsInput,): ReturnType<FindAllDebitsService['find']> {
+    return this.findAllDebits.find(input);
   }
 }
