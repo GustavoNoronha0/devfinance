@@ -66,6 +66,11 @@ import { FindReceivementService } from './services/receivement/find-receivement.
 import { UpdateReceivementService } from './services/receivement/update-receivement.service';
 import { FindAccountReportsService } from './services/reports/find-account-reports.service';
 import { FindAccountReportsResolver } from './resolvers/reports/find-account-reports.resolver';
+import { CategoryReceivementRepository } from './repositories/category-receivement.repository';
+import { DebitRepository } from './repositories/debit.repository';
+import { ReceivementRepository } from './repositories/receivement.repository';
+import { FindAccountGraphService } from './services/graph/find-account-graph.service';
+import { FindAccountGraphResolver } from './resolvers/graph/find-account-graph.resolver';
 @Module({
   imports: [
     GraphQLModule.forRoot(graphqlConfig),
@@ -85,7 +90,13 @@ import { FindAccountReportsResolver } from './resolvers/reports/find-account-rep
       }),
     }),
     TypeOrmModule.forRoot(typeormConfig),
-    TypeOrmModule.forFeature([AccountRepository, CategoryDebitRepository]),
+    TypeOrmModule.forFeature([
+      AccountRepository,
+      CategoryDebitRepository,
+      CategoryReceivementRepository,
+      DebitRepository,
+      ReceivementRepository
+    ]),
   ],
   providers: [
     CreateAccountService,
@@ -140,6 +151,8 @@ import { FindAccountReportsResolver } from './resolvers/reports/find-account-rep
     UpdateReceivementResolver,
     FindAccountReportsService,
     FindAccountReportsResolver,
+    FindAccountGraphService,
+    FindAccountGraphResolver,
   ],
 })
 export class AppModule {
