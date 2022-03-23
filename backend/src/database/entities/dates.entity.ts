@@ -8,7 +8,6 @@ import {
 } from 'typeorm';
 
 @ObjectType()
-@Entity()
 export default abstract class Dates {
   @Field()
   @CreateDateColumn()
