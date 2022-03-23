@@ -4,5 +4,6 @@ const graphqlConfig: GqlModuleOptions = {
   autoSchemaFile: true,
   debug: isDevelopment,
   playground: isDevelopment,
+  context: ({req}) => ({req}),
 };
 export = graphqlConfig;
