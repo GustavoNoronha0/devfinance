@@ -1,10 +1,12 @@
-import { Inject } from '@nestjs/common';
+import { Inject, UseGuards } from '@nestjs/common';
 import { Args, ID, Mutation, Resolver } from '@nestjs/graphql';
 import { Receivement } from '@/database/entities/receivement.entity';
 import { UpdateReceivementInput } from '@/inputs/receivement/update-receivement.input';
 import { UpdateReceivementService as IUpdateReceivementService } from '@/interfaces/receivement/update-receivement.interface';
 import { UpdateReceivementService } from '@/services/receivement/update-receivement.service';
+import { GqlAuthGuard } from '@/auth/auth.guard';
 
+@UseGuards(GqlAuthGuard)
 @Resolver(() => Receivement)
 export class UpdateReceivementResolver {
   constructor(
