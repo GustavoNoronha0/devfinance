@@ -1,9 +1,11 @@
-import { Inject } from '@nestjs/common';
+import { Inject, UseGuards } from '@nestjs/common';
 import { Args, ID, Mutation, Resolver } from '@nestjs/graphql';
 import { CategoryDebit } from '@/database/entities/category-debit.entity';
 import { DeleteCategoryDebitService as IDeleteCategoryDebitService } from '@/interfaces/category-debit/delete-category-debit.interface';
 import { DeleteCategoryDebitService } from '@/services/category-debit/delete-category-debit.service';
+import { GqlAuthGuard } from '@/auth/auth.guard';
 
+@UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryDebit)
 export class DeleteCategoryDebitResolver {
   constructor(
