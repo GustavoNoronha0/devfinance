@@ -1,4 +1,5 @@
 import { Account } from '@/database/entities/account.entity';
+import { AccountRepository } from '@/repositories/account.repository';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
@@ -16,7 +17,7 @@ import { JwtStrategy } from './jwt.strategy';
         signOptions: { expiresIn: 3600 },
       }),
     }),
-    TypeOrmModule.forFeature([Account]),
+    TypeOrmModule.forFeature([Account, AccountRepository]),
   ],
   providers: [
     AuthService,
