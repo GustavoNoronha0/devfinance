@@ -1,10 +1,12 @@
-import { Inject } from '@nestjs/common';
+import { Inject, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { Debit } from '@/database/entities/debit.entity';
 import { CreateDebitInput } from '@/inputs/debit/create-debit.input';
 import { CreateDebitService as ICreateDebitService } from '@/interfaces/debit/create-debit.interface';
 import { CreateDebitService } from '@/services/debit/create-debit.service';
+import { GqlAuthGuard } from '@/auth/auth.guard';
 
+@UseGuards(GqlAuthGuard)
 @Resolver(() => Debit)
 export class CreateDebitResolver {
   constructor(
