@@ -9,6 +9,7 @@ import { ReceivementModule } from './modules/receivement.module';
 import { DebitModule } from './modules/debit.module';
 import { CategoryDebitModule } from './modules/category-debit.module';
 import { CategoryReceivementModule } from './modules/category-receivement.module';
+import { AccountModule } from './modules/account.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { CategoryReceivementModule } from './modules/category-receivement.module
     CategoryReceivementModule,
     DebitModule,
     ReceivementModule,
+    AccountModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
