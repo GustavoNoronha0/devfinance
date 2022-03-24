@@ -4,7 +4,7 @@ import { FindAllCategoryDebitsService as IFindAllCategoryDebitsService } from '@
 import { FindAllCategoryDebitsService } from '@/services/category-debit/find-all-category-debits.service';
 import CategoryDebitPaginate from './paginate/category-debits-input.paginate';
 import FindAllCategoryDebitsInput from '@/services/category-debit/filters/find-all-category-debits.input';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryDebitPaginate)

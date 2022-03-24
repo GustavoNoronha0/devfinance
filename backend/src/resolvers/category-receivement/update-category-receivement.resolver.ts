@@ -4,7 +4,7 @@ import { CategoryReceivement } from '@/database/entities/category-receivement.en
 import { UpdateCategoryReceivementInput } from '@/inputs/category-receivement/update-category-receivement.input';
 import { UpdateCategoryReceivementService as IUpdateCategoryReceivementService } from '@/interfaces/category-receivement/update-category-receivement.interface';
 import { UpdateCategoryReceivementService } from '@/services/category-receivement/update-category-receivement.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryReceivement)

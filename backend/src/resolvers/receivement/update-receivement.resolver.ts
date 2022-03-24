@@ -4,7 +4,7 @@ import { Receivement } from '@/database/entities/receivement.entity';
 import { UpdateReceivementInput } from '@/inputs/receivement/update-receivement.input';
 import { UpdateReceivementService as IUpdateReceivementService } from '@/interfaces/receivement/update-receivement.interface';
 import { UpdateReceivementService } from '@/services/receivement/update-receivement.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => Receivement)

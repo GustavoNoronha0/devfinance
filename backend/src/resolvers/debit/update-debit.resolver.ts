@@ -4,7 +4,7 @@ import { Debit } from '@/database/entities/debit.entity';
 import { UpdateDebitInput } from '@/inputs/debit/update-debit.input';
 import { UpdateDebitService as IUpdateDebitService } from '@/interfaces/debit/update-debit.interface';
 import { UpdateDebitService } from '@/services/debit/update-debit.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => Debit)

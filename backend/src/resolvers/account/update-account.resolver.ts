@@ -4,7 +4,7 @@ import { Account } from '@/database/entities/account.entity';
 import { UpdateAccountInput } from '@/inputs/account/update-account.input';
 import { UpdateAccountService as IUpdateAccountService } from '@/interfaces/account/update-account.interface';
 import { UpdateAccountService } from '@/services/account/update-account.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => Account)

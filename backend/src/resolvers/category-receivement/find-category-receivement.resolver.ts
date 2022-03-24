@@ -3,7 +3,7 @@ import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { CategoryReceivement } from '@/database/entities/category-receivement.entity';
 import { FindCategoryReceivementService as IFindCategoryReceivementService } from '@/interfaces/category-receivement/find-category-receivement.interface';
 import { FindCategoryReceivementService } from '@/services/category-receivement/find-category-receivement.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryReceivement)

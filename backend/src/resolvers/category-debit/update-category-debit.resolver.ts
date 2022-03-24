@@ -4,7 +4,7 @@ import { CategoryDebit } from '@/database/entities/category-debit.entity';
 import { UpdateCategoryDebitInput } from '@/inputs/category-debit/update-category-debit.input';
 import { UpdateCategoryDebitService as IUpdateCategoryDebitService } from '@/interfaces/category-debit/update-category-debit.interface';
 import { UpdateCategoryDebitService } from '@/services/category-debit/update-category-debit.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryDebit)

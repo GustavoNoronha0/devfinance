@@ -3,7 +3,7 @@ import { Args, ID, Mutation, Resolver } from '@nestjs/graphql';
 import { CategoryReceivement } from '@/database/entities/category-receivement.entity';
 import { DeleteCategoryReceivementService as IDeleteCategoryReceivementService } from '@/interfaces/category-receivement/delete-category-receivement.interface';
 import { DeleteCategoryReceivementService } from '@/services/category-receivement/delete-category-receivement.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryReceivement)

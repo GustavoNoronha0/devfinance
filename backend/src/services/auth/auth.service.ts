@@ -6,8 +6,8 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserInputError } from 'apollo-server-errors';
 import { Repository } from 'typeorm';
-import AuthInput from './auth.input';
-import Auth from './auth.typings';
+import AuthInput from '../../resolvers/auth/typings/auth.input';
+import Auth from '../../resolvers/auth/typings/auth.typings';
 
 @Injectable()
 export default class AuthService {

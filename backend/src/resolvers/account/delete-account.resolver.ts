@@ -3,7 +3,7 @@ import { Args, ID, Mutation, Resolver } from '@nestjs/graphql';
 import { Account } from '@/database/entities/account.entity';
 import { DeleteAccountService as IDeleteAccountService } from '@/interfaces/account/delete-account.interface';
 import { DeleteAccountService } from '@/services/account/delete-account.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @Resolver(() => Account)
 @UseGuards(GqlAuthGuard)

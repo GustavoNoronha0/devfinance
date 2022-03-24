@@ -4,7 +4,7 @@ import { FindAllCategoryReceivementsService as IFindAllCategoryReceivementsServi
 import { FindAllCategoryReceivementsService } from '@/services/category-receivement/find-all-category-receivements.service';
 import CategoryReceivementPaginate from './paginate/category-receivements-input.paginate';
 import FindAllCategoryReceivementsInput from '@/services/category-receivement/filters/find-all-category-receivements.input';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryReceivementPaginate)

@@ -3,7 +3,7 @@ import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { CategoryDebit } from '@/database/entities/category-debit.entity';
 import { FindCategoryDebitService as IFindCategoryDebitService } from '@/interfaces/category-debit/find-category-debit.interface';
 import { FindCategoryDebitService } from '@/services/category-debit/find-category-debit.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryDebit)

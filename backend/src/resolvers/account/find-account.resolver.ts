@@ -3,7 +3,7 @@ import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { Account } from '@/database/entities/account.entity';
 import { FindAccountService as IFindAccountService } from '@/interfaces/account/find-account.interface';
 import { FindAccountService } from '@/services/account/find-account.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => Account)

@@ -4,7 +4,7 @@ import { FindAllDebitsService as IFindAllDebitsService } from '@/interfaces/debi
 import { FindAllDebitsService } from '@/services/debit/find-all-debits.service';
 import FindAllDebitsInput from '@/services/debit/filters/find-all-debits.input';
 import DebitPaginate from './paginate/debits-input.paginate';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 
 @UseGuards(GqlAuthGuard)

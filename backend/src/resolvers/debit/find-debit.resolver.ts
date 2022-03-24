@@ -3,7 +3,7 @@ import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { Debit } from '@/database/entities/debit.entity';
 import { FindDebitService as IFindDebitService } from '@/interfaces/debit/find-debit.interface';
 import { FindDebitService } from '@/services/debit/find-debit.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => Debit)

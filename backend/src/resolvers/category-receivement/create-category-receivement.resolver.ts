@@ -4,7 +4,7 @@ import { CategoryReceivement } from '@/database/entities/category-receivement.en
 import { CreateCategoryReceivementInput } from '@/inputs/category-receivement/create-category-receivement.input';
 import { CreateCategoryReceivementService as ICreateCategoryReceivementService } from '@/interfaces/category-receivement/create-category-receivement.interface';
 import { CreateCategoryReceivementService } from '@/services/category-receivement/create-category-receivement.service';
-import { GqlAuthGuard } from '@/auth/auth.guard';
+import { GqlAuthGuard } from '@/resolvers/auth/guard/auth.guard';
 
 @UseGuards(GqlAuthGuard)
 @Resolver(() => CategoryReceivement)
