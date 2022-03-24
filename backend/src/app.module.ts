@@ -6,10 +6,12 @@ import { GraphQLModule } from '@nestjs/graphql';
 import AuthModule from './auth/auth.module';
 import graphqlConfig from './configs/graphql.config';
 import { ReceivementModule } from './modules/receivement.module';
+import { DebitModule } from './modules/debit.module';
 
 @Module({
   imports: [
     AuthModule,
+    DebitModule,
     ReceivementModule,
     ConfigModule.forRoot({
       isGlobal: true,
