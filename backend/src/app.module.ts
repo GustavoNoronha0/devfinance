@@ -7,10 +7,12 @@ import AuthModule from './auth/auth.module';
 import graphqlConfig from './configs/graphql.config';
 import { ReceivementModule } from './modules/receivement.module';
 import { DebitModule } from './modules/debit.module';
+import { CategoryDebitModule } from './modules/category-debit.module';
 
 @Module({
   imports: [
     AuthModule,
+    CategoryDebitModule,
     DebitModule,
     ReceivementModule,
     ConfigModule.forRoot({
