@@ -1,5 +1,4 @@
 
-import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -19,9 +18,6 @@ import { AccountModule } from './modules/account.module';
     DebitModule,
     ReceivementModule,
     AccountModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
     GraphQLModule.forRoot(graphqlConfig),
     TypeOrmModule.forRoot(),
   ],
