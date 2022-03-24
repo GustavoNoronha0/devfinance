@@ -19,11 +19,13 @@ export default class AuthService {
 
   async validateUser({ email, password }: AuthInput): Promise<Auth> {
     const account = await this.repository.findOne({ email });
-    const incorrectPassword = bcrypt.compareSync(password, account.password);
+    console.log(account.password)
+    console.log(password)
+    const incorrectPassword = !bcrypt.compareSync(password, account.password);
     if (incorrectPassword) {
       throw new UserInputError('Invalid credentials');
     }
-    const payload = { sub: account.id };
+    const payload = { sub: account.id };  
     const jwt: JWT = {
       accessToken: this.jwtService.sign(payload),
       expiresIn: 3600,

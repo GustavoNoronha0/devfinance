@@ -11,11 +11,9 @@ import { JwtStrategy } from '../shared/jwt.strategy';
 @Module({
   imports: [
     PassportModule,
-    JwtModule.registerAsync({
-      useFactory: () => ({
-        secret: process.env.JWT_SECRET,
-        signOptions: { expiresIn: 3600 },
-      }),
+    JwtModule.register({
+      secret: 'test',
+      signOptions: { expiresIn: 3600 },
     }),
     TypeOrmModule.forFeature([Account, AccountRepository]),
   ],
