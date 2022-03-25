@@ -19,8 +19,6 @@ export default class AuthService {
 
   async validateUser({ email, password }: AuthInput): Promise<Auth> {
     const account = await this.repository.findOne({ email });
-    console.log(account.password)
-    console.log(password)
     const incorrectPassword = !bcrypt.compareSync(password, account.password);
     if (incorrectPassword) {
       throw new UserInputError('Invalid credentials');
