@@ -1,7 +1,9 @@
-import { AuthProvider } from './login'
+
+import { ApolloProvider } from '@apollo/client';
+import apolloClient from './login';
 
 const AppProvider: React.FC = ({ children }) => (
-  <AuthProvider>{children}</AuthProvider>
+  <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
 )
 
 export default AppProvider
