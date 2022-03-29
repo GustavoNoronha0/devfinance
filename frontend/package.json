@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.20",
-    "graphql": "^15.5.0",
     "@hookform/resolvers": "^2.8.3",
     "@popmotion/popcorn": "^0.4.4",
     "@styled-icons/material-outlined": "^10.18.0",
@@ -41,6 +40,7 @@
     "antd": "^4.16.13",
     "date-fns": "^2.25.0",
     "framer-motion": "^4.1.16",
+    "graphql": "^15.5.0",
     "next": "^10.2.0",
     "next-pwa": "^5.2.21",
     "polished": "^4.1.2",
@@ -54,6 +54,7 @@
     "styled-components": "^5.3.3",
     "styled-icons": "^10.22.0",
     "styled-media-query": "^2.1.2",
+    "victory": "^36.3.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
