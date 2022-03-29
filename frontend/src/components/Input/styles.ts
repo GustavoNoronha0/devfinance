@@ -22,7 +22,7 @@ export const Label = styled.label`
     display: flex;
     align-items: center;
 
-    color: ${theme.colors.black};
+    color: ${theme.colors.white};
   `}
 `
 

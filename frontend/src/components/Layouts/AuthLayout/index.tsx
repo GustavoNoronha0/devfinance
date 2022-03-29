@@ -7,7 +7,7 @@ type AuthLayoutProps = {
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <>
-      <S.TitleLogin>Controle Financeiro</S.TitleLogin>
+      <S.TitleLogin>Login</S.TitleLogin>
       {children}
     </>
   )

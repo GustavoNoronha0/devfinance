@@ -11,5 +11,8 @@ export const TitleLogin = styled.h1`
     font-size: 30px;
     line-height: 35px;
     margin-top: 80px;
+    ${({ theme }) => css`
+      color: ${theme.colors.white};
+    `}
   `}
 `

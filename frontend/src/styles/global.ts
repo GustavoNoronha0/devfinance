@@ -76,7 +76,7 @@ const GlobalStyles: GlobalStyleComponent<
 
       ${!removeBg &&
       css`
-        background-color: ${theme.colors.baseColorYellow};
+        background-color: ${theme.colors.black};
       `}
     }
   `}
