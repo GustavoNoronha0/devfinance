@@ -12,16 +12,16 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           <S.Link href="/">
             <S.Logo src="/img/logo-finance.svg" />
           </S.Link>
-          <S.Link>
+          <S.Link href='/category-receivement'>
             Cat/Receber
           </S.Link>
-          <S.Link>
+          <S.Link href='/category-debit'>
             Cat/Pagar
           </S.Link>
-          <S.Link>
+          <S.Link href='/receivement'>
             Contas/Receber
           </S.Link>
-          <S.Link>
+          <S.Link href='/debit'>
             Contas/Pagar
           </S.Link>
         </S.Links> 

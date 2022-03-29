@@ -54,11 +54,11 @@ export const DivList = styled.div`
     align-items: left;
 
     @media (max-width: 800px) {
-      width: 450px;
+      width: 500px;
     }
 
     @media (max-width: 600px) {
-      width: 400px;
+      width: 450px;
     }
   `}
 `
@@ -104,6 +104,8 @@ export const Content = styled.div`
   align-items: center;
   position: relative;
   min-height: 100px;
+
+  overflow: auto;
 `
 
 export const CountParticipants = styled.h4`
@@ -147,6 +149,18 @@ export const TableHeadDescription = styled.th`
   margin-left: 25px;
 `
 
+export const TableHeadCategory = styled.th`
+  margin-left: 25px;
+`
+
+export const TableHeadValue = styled.th`
+  margin-left: 25px;
+`
+
+export const TableHeadDate = styled.th`
+  margin-left: 25px;
+`
+
 export const TableHeadRemove = styled.th``
 
 export const TableItem = styled.tr`
@@ -155,11 +169,23 @@ export const TableItem = styled.tr`
   align-items: center;
 `
 export const TableTitle = styled.td`
-  width: 40px;
+  width: 25px;
+`
+
+export const TableCategory = styled.td`
+  width: 80px;
+`
+
+export const TableValue = styled.td`
+  width: 30px;
+`
+
+export const TableDate = styled.td`
+  width: 50px;
 `
 
 export const TableDescription = styled.td`
-  width: 110px;
+  width: 120px;
 `
 
 export const TableIcon = styled.td`
