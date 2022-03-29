@@ -7,9 +7,9 @@ type DefaultLayoutProps = {
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   return (
     <S.Container>
-      <S.Header>
+      <S.Header>   
         <S.Link href="/">
-          Dashboard
+          <S.Logo src="/img/logo-finance.svg" />
         </S.Link>
         <S.Link>
           Cat/Receber

@@ -19,6 +19,8 @@ export const Header = styled.div`
   justify-content: center;
 `
 
+export const Logo = styled.img``
+
 export const Link = styled.a`
   display: flex;
   align-items: center;

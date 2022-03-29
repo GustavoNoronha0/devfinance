@@ -28,6 +28,7 @@ const Login = () => {
   return (
     <S.Container>
       <S.Content>
+        <S.ImgLogin src="/img/logo-finance.svg" />
         <S.LoginForm onSubmit={handleSubmit(handleSubmitLogin)}>
           <Input
             label="Login"

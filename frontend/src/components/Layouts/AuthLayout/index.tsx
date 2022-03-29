@@ -1,5 +1,3 @@
-import * as S from './styles'
-
 type AuthLayoutProps = {
   children: React.ReactNode
 }
@@ -7,7 +5,6 @@ type AuthLayoutProps = {
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <>
-      <S.TitleLogin>Login</S.TitleLogin>
       {children}
     </>
   )
