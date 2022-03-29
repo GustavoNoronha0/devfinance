@@ -15,8 +15,15 @@ export const Header = styled.div`
 
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+`
+
+export const Links = styled.div`
+  width: 75%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 `
 
 export const Logo = styled.img``
