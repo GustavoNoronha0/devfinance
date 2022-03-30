@@ -49,7 +49,6 @@ const CategoryDebit = () => {
         typeStyle="add" 
         children="Adicionar" 
         onClick={() => {
-          console.log('oap')
           setIsModalCategoryDebitAddOpen(true)
         }}
       /> 

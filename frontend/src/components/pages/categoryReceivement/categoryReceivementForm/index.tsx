@@ -5,34 +5,34 @@ import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
-type CategoryDebitForm = {
+type CategoryReceivementForm = {
   title: string
-  description: string
+  descrition: string
 }
 
-type CategoryDebitFormProps = {
-  loadCategoryDebits: () => void
+type CategoryReceivementFormProps = {
+  loadCategoryReceivements: () => void
   onClose: () => void
 }
 
-const CategoryDebitForm = ({ loadCategoryDebits, onClose }: CategoryDebitFormProps) => {
-  const { handleSubmit } = useForm<CategoryDebitForm>()
+const CategoryReceivementForm = ({ loadCategoryReceivements, onClose }: CategoryReceivementFormProps) => {
+  const { handleSubmit } = useForm<CategoryReceivementForm>()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
-  const handleSubmitCategoryDebit = useCallback(async (): Promise<void> => {
+  const handleSubmitCategoryReceivement = useCallback(async (): Promise<void> => {
     try {
-      toast.success('Categoria de Debito salva com Sucesso')
+      toast.success('Categoria de recebimento salva com Sucesso')
     } catch (error) {
-      toast.error('Erro ao salvar a categoria do debito')
+      toast.error('Erro ao salvar a categoria do recebimento')
     }
-  }, [title, description, loadCategoryDebits, onClose])
+  }, [title, description, loadCategoryReceivements, onClose])
 
   return (
     <S.Container>
-      <S.CategoryDebitForm onSubmit={handleSubmit(handleSubmitCategoryDebit)}>
-        <S.CategoryDebitFormInputies>
+      <S.CategoryReceivementForm onSubmit={handleSubmit(handleSubmitCategoryReceivement)}>
+        <S.CategoryReceivementFormInputies>
           <Input
             label="Title"
             type="text"
@@ -47,16 +47,16 @@ const CategoryDebitForm = ({ loadCategoryDebits, onClose }: CategoryDebitFormPro
             placeholder="Digite a descrição"
             required
           />
-        </S.CategoryDebitFormInputies>
+        </S.CategoryReceivementFormInputies>
 
-        <S.CategoryDebitFormButton>
+        <S.CategoryReceivementFormButton>
           <Button typeStyle="save" type="submit">
             Salvar
           </Button>
-        </S.CategoryDebitFormButton>
-      </S.CategoryDebitForm>
+        </S.CategoryReceivementFormButton>
+      </S.CategoryReceivementForm>
     </S.Container>
   )
 }
 
-export default CategoryDebitForm
+export default CategoryReceivementForm
