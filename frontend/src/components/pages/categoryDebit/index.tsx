@@ -1,5 +1,6 @@
+import Button from '@/components/Button'
 import ListCategories from '@/components/ListCategories'
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from './styles'
 
 const CategoryDebit = () => {
@@ -20,6 +21,10 @@ const CategoryDebit = () => {
   }
   return (
     <S.Container>
+      <Button 
+        typeStyle="add" 
+        children="Adicionar" 
+      /> 
       <ListCategories title="Lista de Categorias de Debito" categories={categoriesDebit} onRemove={onRemove}/>
     </S.Container>
   )

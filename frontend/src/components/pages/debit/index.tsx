@@ -1,3 +1,4 @@
+import Button from '@/components/Button'
 import ListDefault from '@/components/ListDefault'
 import React from 'react'
 import * as S from './styles'
@@ -26,6 +27,10 @@ const Debit = () => {
   }
   return (
     <S.Container>
+      <Button
+        typeStyle="add" 
+        children="Adicionar" 
+      /> 
       <ListDefault title="Lista de Debitos" defaults={defaults} onRemove={onRemove}/>
     </S.Container>
   )

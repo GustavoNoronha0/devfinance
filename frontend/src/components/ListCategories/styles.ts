@@ -18,7 +18,7 @@ export const Motion = styled(motion.div).attrs({
   max-width: 85%;
   width: auto;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 10px;
 `
 
 export const Wrapper = styled.div.attrs({

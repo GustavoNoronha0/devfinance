@@ -13,7 +13,7 @@ const buttonsModifiers = {
   `,
 
   add: (theme: DefaultTheme) => css`
-    background-color: ${theme.colors.baseColorYellow};
+    background-color: ${theme.colors.tomato};
     color: ${theme.colors.white};
   `,
 
@@ -37,7 +37,7 @@ export const ButtonWrapper = styled.button.attrs({
     font-weight: bold;
     font-size: 16px;
     line-height: 16px;
-    padding: 14px 100px;
+    padding: 14px 60px;
 
     border-radius: 5px;
     cursor: pointer;
