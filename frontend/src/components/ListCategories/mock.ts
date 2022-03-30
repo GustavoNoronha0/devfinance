@@ -10,7 +10,7 @@ export const ListCategoriesMock: ListCategoriesProps = {
       description: 'any_description'
     },
     {
-      id: 'any_id',
+      id: 'any_id2',
       title: 'any_title',
       description: 'any_description'
     }

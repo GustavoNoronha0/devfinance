@@ -14,7 +14,7 @@ const Debit = () => {
       date: new Date()
     },
     {
-      id: 'any_id',
+      id: 'any_id2',
       title: 'any_title',
       category: 'receivement',
       description: 'any_description',

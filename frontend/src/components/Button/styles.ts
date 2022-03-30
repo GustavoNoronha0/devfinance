@@ -8,7 +8,7 @@ const buttonsModifiers = {
   `,
 
   save: (theme: DefaultTheme) => css`
-    background-color: ${theme.colors.baseColorYellow};
+    background-color: ${theme.colors.tomato};
     color: ${theme.colors.white};
   `,
 
