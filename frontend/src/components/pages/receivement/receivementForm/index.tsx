@@ -4,6 +4,7 @@ import Input from '@/components/Input'
 import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import Select from '@/components/Select'
 
 type ReceivementForm = {
   title: string
@@ -54,12 +55,14 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
             placeholder="Digite a descrição"
             required
           />
-          <Input
+          <Select
             label="Categoria"
-            type="text"
+            value="category"
             onInputChange={setCategory}
-            placeholder="Selecione a categoria"
-            required
+            options={[
+              'option1',
+              'option2'
+            ]}
           />
           <Input
             label="Valor"
