@@ -37,16 +37,16 @@ export const ReportsTitle = styled.h4`
   flex-direction: row;
 `
 
-export const ReportsValue = styled.h4`
+export const ReportsValueDebit = styled.h4`
   ${({ theme }) => css`
-    color: ${theme.colors.baseColorYellow};
+    color: ${theme.colors.tomato};
     margin-left: 5px;
   `}
 `
 
-export const ReportsValueDebit = styled.h4`
+export const ReportsValue = styled.h4`
   ${({ theme }) => css`
-    color: ${theme.colors.tomato};
+    color: ${theme.colors.baseColorYellow};
     margin-left: 5px;
   `}
 `
