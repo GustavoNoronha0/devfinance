@@ -7,29 +7,30 @@ export const Body = styled.div`
 `
 
 export const Header = styled.div`
-  height: fit-content;
-  width: 100%;
+  height: 100%;
+  width: 8%;
   ${({ theme }) => css`
     background: ${theme.colors.white};
   `}
-
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  position: fixed;
 `
 
 export const Links = styled.div`
-  width: 75%;
-
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 150px;
 `
 
-export const Logo = styled.img``
+export const Logo = styled.img`
+  width: 40px;
+`
 
 export const Link = styled.a`
   display: flex;
+  justify-content: center;
   align-items: center;
   ${({ theme }) => css`
     color: ${theme.colors.black};
@@ -37,4 +38,5 @@ export const Link = styled.a`
   padding: 10px;
   text-decoration: none;
   font-weight: bold;
+  margin-top: 10px;
 `

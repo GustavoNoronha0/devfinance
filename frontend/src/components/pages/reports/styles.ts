@@ -2,46 +2,40 @@ import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-
   align-items: center;
-  justify-content: center;
 `
 
 export const Div = styled.div`
-  width: 80%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    margin-top: 100px;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin-top: 100px;
+  }
 `
 
 export const Graph = styled.div`
-  margin: 10px 60px; 
+  margin: 2px 60px; 
   display: grid;
-  width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(300px, 320px));
   grid-row-gap: 10px;
 
   align-items: center;
-  justify-content: space-arround;
 `
 
 export const Reports = styled.div`
   margin-left: 50px;
-`
-
-export const ReportsTitle = styled.h4`
-  ${({ theme }) => css`
-    color: ${theme.colors.white};
-  `}
-  display: flex;
-  flex-direction: row;
-`
-
-export const ReportsValueDebit = styled.h4`
-  ${({ theme }) => css`
-    color: ${theme.colors.tomato};
-    margin-left: 5px;
-  `}
 `
 
 export const ReportsValue = styled.h4`
@@ -51,34 +45,34 @@ export const ReportsValue = styled.h4`
   `}
 `
 
+export const ReportsTitle = styled.h4`
+  ${({ theme }) => css`
+    color: ${theme.colors.black};
+  `}
+  display: flex;
+  flex-direction: row;
+`
+
+export const ReportsValueDebit = styled.h4`
+  ${({ theme }) => css`
+    color: ${theme.colors.tomato};
+    margin-right: 5px;
+  `}
+`
+
 export const ReportsValueReceivement = styled.h4`
   ${({ theme }) => css`
-    color: ${theme.colors.baseColorGreen};
-    margin-left: 5px;
+    color: ${theme.colors.baseColorYellow};
+    margin-right: 5px;
   `}
 `
 
 export const ButtonAdd = styled.div`
-  margin-left: 20px;
-
-
-  @media (max-width: 800px) {
-    margin-left: 40px;
-  }
-
-  @media (max-width: 600px) {
-    margin-left: 40px;
-  }
+  margin-left: 30px;
 `
 
 export const Cards = styled.div`
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 320px));
-  grid-row-gap: 10px;
-
-  align-items: center;
-  justify-content: center;
-  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
 `
 

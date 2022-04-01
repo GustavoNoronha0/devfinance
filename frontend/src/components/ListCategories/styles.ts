@@ -30,6 +30,7 @@ export const Motion = styled(motion.div).attrs({
 
 export const List = styled.div`
   ${({ theme }) => css`
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: ${theme.border.radius};
     display: flex;
     align-items: center;

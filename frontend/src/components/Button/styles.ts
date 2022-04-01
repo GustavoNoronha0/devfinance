@@ -17,6 +17,12 @@ const buttonsModifiers = {
     color: ${theme.colors.white};
   `,
 
+  download: (theme: DefaultTheme) => css`
+    background-color: ${theme.colors.tomato};
+    color: ${theme.colors.white};
+    width: 300px;
+  `,
+
   cancel: (theme: DefaultTheme) => css`
     border: 1px solid ${theme.colors.black};
     background-color: transparent;
@@ -59,4 +65,5 @@ export const ButtonWrapper = styled.button.attrs({
   `}
 `
 
-export const Content = styled.div``
+export const Content = styled.div`
+`

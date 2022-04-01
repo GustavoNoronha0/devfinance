@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { BsPeople } from 'react-icons/bs'
 import { AiOutlineDollar } from 'react-icons/ai'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -41,6 +40,7 @@ export const Card = styled.button`
     cursor: pointer;
     border: none;
 
+    margin-top: 10px;
     &:hover {
       box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
     }
@@ -54,7 +54,7 @@ export const DivCard = styled.div`
     border-radius: ${theme.border.radius};
     padding: 20px;
     width: 300px;
-    height: 200px;
+    height: 120px;
 
     display: flex;
     flex-direction: column;
