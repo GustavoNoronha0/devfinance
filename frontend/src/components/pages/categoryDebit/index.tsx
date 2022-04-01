@@ -39,20 +39,24 @@ const CategoryDebit = () => {
   }, [isModalCategoryDebitAddOpen])
   return (
     <S.Container>
-      <CategoryDebitAdd
-        isOpen={isModalCategoryDebitAddOpen}
-        onClose={handleToggleModalCategoryDebitAdd}
-        getValueOpen={getValueOpen}
-        loadCategoryDebits={loadCategoryDebits}
-      />
-      <Button 
-        typeStyle="add" 
-        children="Adicionar" 
-        onClick={() => {
-          setIsModalCategoryDebitAddOpen(true)
-        }}
-      /> 
-      <ListCategories title="Lista de Categorias de Debito" categories={categoriesDebit} onRemove={onRemove}/>
+      <S.Div>
+        <CategoryDebitAdd
+          isOpen={isModalCategoryDebitAddOpen}
+          onClose={handleToggleModalCategoryDebitAdd}
+          getValueOpen={getValueOpen}
+          loadCategoryDebits={loadCategoryDebits}
+        />
+        <S.ButtonAdd>
+          <Button 
+            typeStyle="add" 
+            children="Adicionar" 
+            onClick={() => {
+              setIsModalCategoryDebitAddOpen(true)
+            }}
+          />
+        </S.ButtonAdd> 
+        <ListCategories title="Lista de Categorias de Debito" categories={categoriesDebit} onRemove={onRemove}/>
+      </S.Div>
     </S.Container>
   )
 }

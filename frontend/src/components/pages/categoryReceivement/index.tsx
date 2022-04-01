@@ -39,20 +39,24 @@ const CategoryReceivement = () => {
   }, [isModalCategoryReceivementAddOpen])
   return (
     <S.Container>
-      <CategoryReceivementAdd
-        isOpen={isModalCategoryReceivementAddOpen}
-        onClose={handleToggleModalCategoryReceivementAdd}
-        getValueOpen={getValueOpen}
-        loadCategoryReceivements={loadCategoryReceivements}
-      />
-      <Button 
-        typeStyle="add" 
-        children="Adicionar" 
-        onClick={() => {
-          setIsModalCategoryReceivementAddOpen(true)
-        }}
-      /> 
-      <ListCategories title="Lista de Categorias de Recebimento" categories={categoriesReceivement} onRemove={onRemove}/>
+      <S.Div>
+        <CategoryReceivementAdd
+          isOpen={isModalCategoryReceivementAddOpen}
+          onClose={handleToggleModalCategoryReceivementAdd}
+          getValueOpen={getValueOpen}
+          loadCategoryReceivements={loadCategoryReceivements}
+        />
+        <S.ButtonAdd>
+          <Button 
+            typeStyle="add"   
+            children="Adicionar" 
+            onClick={() => {
+              setIsModalCategoryReceivementAddOpen(true)
+            }}
+          /> 
+        </S.ButtonAdd>
+        <ListCategories title="Lista de Categorias de Recebimento" categories={categoriesReceivement} onRemove={onRemove}/>
+      </S.Div>
     </S.Container>
   )
 }

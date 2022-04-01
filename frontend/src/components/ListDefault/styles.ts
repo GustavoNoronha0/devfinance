@@ -5,6 +5,14 @@ import { FiTrash } from 'react-icons/fi'
 
 import { motion, AnimatePresence } from 'framer-motion'
 
+export const Wrapper = styled.div.attrs({
+  'data-testid': 'WrapperList'
+})`
+  width: 100%;
+
+  top: 5;
+`
+
 export const Animate = styled(AnimatePresence)``
 export const Motion = styled(motion.div).attrs({
   transition: { ease: 'easeInOut', duration: 0.5 },
@@ -15,22 +23,9 @@ export const Motion = styled(motion.div).attrs({
 })`
   position: relative;
 
-  max-width: 85%;
-  width: auto;
+  width: 100%;
   margin: auto;
   margin-top: 10px;
-`
-
-export const Wrapper = styled.div.attrs({
-  'data-testid': 'WrapperList'
-})`
-  width: fit-content;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  top: 5;
 `
 
 export const List = styled.div`
@@ -46,22 +41,15 @@ export const DivList = styled.div`
     background-color: ${theme.colors.white};
     border-radius: ${theme.border.radius};
     padding: 2rem;
-    width: 1000px;
+    width: 100%;
     height: fit-content;
 
     display: flex;
     flex-direction: column;
     align-items: left;
-
-    @media (max-width: 800px) {
-      width: 500px;
-    }
-
-    @media (max-width: 600px) {
-      width: 450px;
-    }
   `}
 `
+
 
 export const TitleList = styled.p`
   ${({ theme }) => css`

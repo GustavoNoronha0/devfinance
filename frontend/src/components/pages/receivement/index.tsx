@@ -45,20 +45,24 @@ const Receivement = () => {
   }, [isModalReceivementAddOpen])
   return (
     <S.Container>
-      <ReceivementAdd
-        isOpen={isModalReceivementAddOpen}
-        onClose={handleToggleModalReceivementAdd}
-        getValueOpen={getValueOpen}
-        loadReceivements={loadReceivements}
-      />
-      <Button 
-        typeStyle="add" 
-        children="Adicionar" 
-        onClick={() => {
-          setIsModalReceivementAddOpen(true)
-        }}
-      /> 
-      <ListDefault title="Lista de Recebimentos" defaults={categoriesReceivement} onRemove={onRemove} />
+      <S.Div>
+        <ReceivementAdd
+          isOpen={isModalReceivementAddOpen}
+          onClose={handleToggleModalReceivementAdd}
+          getValueOpen={getValueOpen}
+          loadReceivements={loadReceivements}
+        />
+        <S.ButtonAdd>
+          <Button 
+            typeStyle="add" 
+            children="Adicionar" 
+            onClick={() => {
+              setIsModalReceivementAddOpen(true)
+            }}
+          /> 
+        </S.ButtonAdd>
+        <ListDefault title="Lista de Recebimentos" defaults={categoriesReceivement} onRemove={onRemove} />
+      </S.Div>
     </S.Container>
   )
 }
