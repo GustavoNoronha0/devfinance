@@ -8,13 +8,22 @@ export const Body = styled.div`
 
 export const Header = styled.div`
   height: 100%;
-  width: 8%;
+  width: 6%;
   ${({ theme }) => css`
     background: ${theme.colors.white};
   `}
   display: flex;
   flex-direction: column;
   position: fixed;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 800px) {
+    width: 12%;
+  }
+
+  @media (max-width: 600px) {
+    width: 12%;
+  }
 `
 
 export const Links = styled.div`
@@ -25,7 +34,15 @@ export const Links = styled.div`
 `
 
 export const Logo = styled.img`
-  width: 40px;
+  width: 60px;
+
+  @media (max-width: 800px) {
+    width: 50px;
+  }
+
+  @media (max-width: 600px) {
+    width: 50px;
+  }
 `
 
 export const Link = styled.a`
