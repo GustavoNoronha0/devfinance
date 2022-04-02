@@ -22,7 +22,7 @@ const Login = () => {
     const input = {email: emailForm, password: passwordForm}
     const { data } = await login({ variables: { input } });
     localStorage.setItem('accessToken', data.login.jwt.accessToken);
-    localStorage.setItem('account', data.login.account.name);
+    localStorage.setItem('account', data.login.account.id);
     window.location.replace('/');
   }
 

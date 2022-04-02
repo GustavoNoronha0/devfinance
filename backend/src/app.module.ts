@@ -9,6 +9,7 @@ import { DebitModule } from './modules/debit.module';
 import { CategoryDebitModule } from './modules/category-debit.module';
 import { CategoryReceivementModule } from './modules/category-receivement.module';
 import { AccountModule } from './modules/account.module';
+import { GraphModule } from './modules/graph.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AccountModule } from './modules/account.module';
     DebitModule,
     ReceivementModule,
     AccountModule,
+    GraphModule,
     GraphQLModule.forRoot(graphqlConfig),
     TypeOrmModule.forRoot(),
   ],

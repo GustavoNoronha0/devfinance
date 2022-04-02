@@ -3,9 +3,16 @@ import Card from '@/components/Card'
 import React from 'react'
 import * as S from './styles'
 import Button from '@/components/Button';
-import { BsDownload } from 'react-icons/bs';
+import { useQuery } from '@apollo/client';
+import graphQuery from '@/gql/reports/GraphQuery';
 
 const Reports = () => {
+  const pageLoaded = typeof window !== 'undefined';
+  const account =  pageLoaded ? localStorage.getItem('account') : '';
+  const { data: graph } = useQuery(graphQuery, {
+    variables: { account },
+  });
+  console.log(graph)
   return (
     <S.Container>
       <S.Div>         
@@ -40,9 +47,9 @@ const Reports = () => {
           </S.Reports>
         </S.Graph>
         <S.Cards>
-          <Card count="1200.00" title="Saldo a Pagar" onClick={() => console.log("debit")} />
-          <Card count="2300.00" title="Saldo a Receber" onClick={() => console.log("receivement")} />
-          <Card count="1100.00" title="Saldo Total" onClick={() => console.log("total")} />
+          <Card count={graph.graphAccount.countDebit} title="Saldo a Pagar" onClick={() => console.log("debit")} />
+          <Card count={graph.graphAccount.countReceivement} title="Saldo a Receber" onClick={() => console.log("receivement")} />
+          <Card count={graph.graphAccount.countTotal} title="Saldo Total" onClick={() => console.log("total")} />
           <S.ButtonAdd>
             <Button
               typeStyle="download" 
