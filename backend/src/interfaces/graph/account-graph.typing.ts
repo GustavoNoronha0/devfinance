@@ -1,14 +1,14 @@
-import { ObjectType } from "@nestjs/graphql"
-import { Column } from "typeorm"
+import { Field, InputType, ObjectType } from "@nestjs/graphql"
 
-@ObjectType()
+@ObjectType({ isAbstract: true })
+@InputType({ isAbstract: true })
 export class AccountGraph {
-  @Column()
+  @Field()
   countDebit: string
 
-  @Column()
+  @Field()
   countReceivement: string
 
-  @Column()
+  @Field()
   countTotal: string
 }
