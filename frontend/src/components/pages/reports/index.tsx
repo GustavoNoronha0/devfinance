@@ -5,6 +5,7 @@ import * as S from './styles'
 import Button from '@/components/Button';
 import { useQuery } from '@apollo/client';
 import graphQuery from '@/gql/reports/GraphQuery';
+import reportsQuery from '@/gql/reports/ReportsQuery';
 
 const Reports = () => {
   const pageLoaded = typeof window !== 'undefined';
@@ -12,7 +13,9 @@ const Reports = () => {
   const { data: graph } = useQuery(graphQuery, {
     variables: { account },
   });
-  console.log(graph)
+  const { data: reports } = useQuery(reportsQuery, {
+    variables: { account },
+  });
   return (
     <S.Container>
       <S.Div>         
@@ -25,8 +28,8 @@ const Reports = () => {
               innerRadius={100}
               colorScale={["tomato", "orange"]}
               data={[
-                  { x: "Pagar", y: 1200 },
-                  { x: "Receber", y: 2300 },
+                  { x: "Pagar", y: graph?.graphAccount?.countDebit },
+                  { x: "Receber", y: graph?.graphAccount?.countReceivement }
                 ]}
               style={{
                 data: {
@@ -47,9 +50,9 @@ const Reports = () => {
           </S.Reports>
         </S.Graph>
         <S.Cards>
-          <Card count={graph.graphAccount.countDebit} title="Saldo a Pagar" onClick={() => console.log("debit")} />
-          <Card count={graph.graphAccount.countReceivement} title="Saldo a Receber" onClick={() => console.log("receivement")} />
-          <Card count={graph.graphAccount.countTotal} title="Saldo Total" onClick={() => console.log("total")} />
+          <Card count={reports?.reportsAccount?.amountDebit} title="Saldo a Pagar" onClick={() => console.log("debit")} />
+          <Card count={reports?.reportsAccount?.amountReceivement} title="Saldo a Receber" onClick={() => console.log("receivement")} />
+          <Card count={reports?.reportsAccount?.amountTotal} title="Saldo Total" onClick={() => console.log("total")} />
           <S.ButtonAdd>
             <Button
               typeStyle="download" 
