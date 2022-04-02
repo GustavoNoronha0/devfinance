@@ -28,10 +28,6 @@ const ListCategories = ({
             <S.DivList>
               <S.Header>
                 <S.HeaderLeft>
-                  <S.TitleList>{title}</S.TitleList>
-                </S.HeaderLeft>
-                <S.HeaderRight>
-                  <S.Filters>
                     <Input
                       label="Data Inicial"
                       type="date"
@@ -53,6 +49,9 @@ const ListCategories = ({
                       placeholder="Digite o Titulo ou Descricao"
                       isFilter={true}
                     />
+                </S.HeaderLeft>
+                <S.HeaderRight>
+                  <S.Filters>
                     <Button typeStyle="filter" type="submit">
                       Filtrar
                     </Button>

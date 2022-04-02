@@ -27,7 +27,7 @@ export const Wrapper = styled.main.attrs({
   id: 'WrapperInput'
 })<InputProps>`
   ${({ isFilter }) => css`
-    ${!!isFilter && 'margin-left: 10px'}
+    ${!!isFilter && 'margin-right: 10px'}
   `}
 `
 

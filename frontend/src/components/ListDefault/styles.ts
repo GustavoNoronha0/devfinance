@@ -68,13 +68,19 @@ export const Header = styled.div`
   justify-content: space-between;
 `
 
-export const HeaderLeft = styled.div``
+export const HeaderLeft = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 
 export const HeaderRight = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 10px;
+`
+
+export const Filters = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
 
 export const Date = styled.h2`

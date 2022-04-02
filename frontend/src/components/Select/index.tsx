@@ -11,6 +11,7 @@ export type SelectProps = {
   disabled?: boolean
   error?: string
   required?: boolean
+  isFilter?: boolean
 } & SelectHTMLAttributes<HTMLSelectElement>
 
 const Select = ({
@@ -20,7 +21,8 @@ const Select = ({
   error,
   disabled,
   onInputChange,
-  required
+  required,
+  isFilter
 }: SelectProps) => {
   const [value, setValue] = useState<any>()
 
@@ -42,9 +44,10 @@ const Select = ({
           label={label}
           error={error}
           required={required}
+          isFilter={isFilter}
         >
           {options && options.map((option) => (
-            <S.Option value={option}>
+            <S.Option value={option} key={option}>
               {option}
             </S.Option>
           ))}

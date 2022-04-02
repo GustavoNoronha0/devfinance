@@ -1,8 +1,11 @@
 import * as S from './styles'
 export * from './mock'
-import React from 'react'
+import React, { useState }from 'react'
 import { Default } from '@/gql/models/default'
 import { formatData } from 'src/utils/helpers/index'
+import Select from '../Select'
+import Input from '../Input'
+import Button from '../Button'
 export type TypeListDefault = 'success' | 'error'
 
 export type ListDefaultProps = {
@@ -15,7 +18,11 @@ const ListDefault = ({
   title,
   onRemove,
   defaults
-}: ListDefaultProps) => {
+}: ListDefaultProps) => {  
+  const [intialDate, setIntialDate] = useState()
+  const [finalDate, setFinalDate] = useState()
+  const [others, setOthers] = useState()
+  const [category, setCategory] = useState()
   return (
     <S.Wrapper>
       <S.Animate>
@@ -24,8 +31,45 @@ const ListDefault = ({
             <S.DivList>
               <S.Header>
                 <S.HeaderLeft>
-                  <S.TitleList>{title}</S.TitleList>
-                </S.HeaderLeft>
+                   <Input
+                      label="Data Inicial"
+                      type="date"
+                      onInputChange={setIntialDate}
+                      placeholder="Digite a data inicial"
+                      isFilter={true}
+                    />
+                    <Input
+                      label="Data Final"
+                      type="date"
+                      onInputChange={setFinalDate}
+                      placeholder="Digite a data inicial"
+                      isFilter={true}
+                    />      
+                    <Input
+                      label="Titulo ou Descricao"
+                      type="text"
+                      onInputChange={setOthers}
+                      placeholder="Digite o Titulo ou Descricao"
+                      isFilter={true}
+                    />
+                    <Select
+                      label="Categoria"
+                      value="category"
+                      onInputChange={setCategory}
+                      options={[
+                        'option1',
+                        'option2'
+                      ]}
+                      isFilter={true}
+                    />
+                  </S.HeaderLeft>
+                <S.HeaderRight>
+                  <S.Filters>
+                    <Button typeStyle="filter" type="submit">
+                      Filtrar
+                    </Button>
+                  </S.Filters>
+                </S.HeaderRight>
               </S.Header>
               <S.Content>
                 <S.Table>

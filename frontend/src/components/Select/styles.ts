@@ -1,9 +1,26 @@
 import styled, { css, DefaultTheme } from 'styled-components'
 import { SelectProps } from '.'
 
-const inputModifiers = {
+const selectModifiers = {
   errorSelect: (theme: DefaultTheme) => css`
     border: 0.0625rem solid ${theme.colors.baseColorRed};
+  `,
+
+  selectFilter: () => css`
+    height: 46px;
+    width: 150px;
+
+    ::placeholder {
+      font-size: 10px;
+    }
+
+    :-ms-input-placeholder {
+      font-size: 10px;
+    }
+
+    ::-ms-input-placeholder {
+      font-size: 10px;
+    }
   `
 }
 
@@ -36,7 +53,7 @@ export const SelectWrapper = styled.div`
 `
 
 export const Select = styled.select<SelectProps>`
-  ${({ theme, error }) => css`
+  ${({ theme, error, isFilter}) => css`
     background: transparent;
     border: 1px solid ${theme.colors.lightGray};
     color: ${theme.colors.black};
@@ -57,7 +74,8 @@ export const Select = styled.select<SelectProps>`
 
     margin: 5px 0;
 
-    ${!!error && inputModifiers.errorSelect(theme)}
+    ${!!error && selectModifiers.errorSelect(theme)}
+    ${!!isFilter && selectModifiers.selectFilter()}
   `}
 `
 

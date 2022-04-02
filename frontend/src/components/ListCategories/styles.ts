@@ -68,7 +68,10 @@ export const Header = styled.div`
   align-items: center;
 `
 
-export const HeaderLeft = styled.div``
+export const HeaderLeft = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 
 export const HeaderRight = styled.div`
   padding: 10px;
