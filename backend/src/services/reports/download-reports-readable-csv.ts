@@ -2,8 +2,8 @@ import { Readable } from 'stream';
 import { convertJsonToCsv } from '../../shared/convert-json-to-csv';
 import { AccountReports } from '@/interfaces/reports/account-reports.typing';
 
-export default class DownloadUsersReadableAsCsv extends Readable {
-  private accountHeader = [
+export default class DownloadReportsReadableAsCsv extends Readable {
+  private reportsHeader = [
     'amountDebit',
     'amountReceivement',
     'amountTotal',
@@ -17,15 +17,15 @@ export default class DownloadUsersReadableAsCsv extends Readable {
     this.push(null);
   }
 
-  private sendUsersToStream(reports: AccountReports) {
+  private sendReportsToStream(reports: AccountReports) {
     const reportsAsCsv = convertJsonToCsv(reports);
     this.push(reportsAsCsv);
   }
 
   // eslint-disable-next-line no-underscore-dangle
   async _read() {
-    this.push(this.accountHeader.join(';'));
-    this.sendUsersToStream(this.reports);
+    this.push(this.reportsHeader.join(';'));
+    this.sendReportsToStream(this.reports);
     this.finishStream();
     return;
   }
