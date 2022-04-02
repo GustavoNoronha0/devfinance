@@ -6,7 +6,8 @@ import Button from '@/components/Button';
 import { useQuery } from '@apollo/client';
 import graphQuery from '@/gql/reports/GraphQuery';
 import reportsQuery from '@/gql/reports/ReportsQuery';
-import downloadReports from '@/gql/reports/DownloadReportsQuery';
+import { convertJsonToCsv } from './utils/convertToCsv';
+import { createUriAndNameToFile, downloadFile } from './utils/download';
 
 const Reports = () => {
   const pageLoaded = typeof window !== 'undefined';
@@ -17,6 +18,21 @@ const Reports = () => {
   const { data: reports } = useQuery(reportsQuery, {
     variables: { account },
   });
+  const downloadReports = () => {
+    const reportsHeader = [
+      'amountDebit',
+      'amountReceivement',
+      'amountTotal',
+    ];
+    const fileCsv = convertJsonToCsv(reports.reportsAccount, reportsHeader)
+    const createUriAndNameToFileProps = {
+      file: fileCsv,
+      fileName: 'Relatorios',
+      fileType: 'csv',
+    }
+    const uriFile = createUriAndNameToFile(createUriAndNameToFileProps)
+    downloadFile(uriFile.uri, 'Relatorios',)
+  }
   return (
     <S.Container>
       <S.Div>         
@@ -59,7 +75,7 @@ const Reports = () => {
               typeStyle="download" 
               children={'Download'}
               onClick={() => {
-                console.log('reports')
+                downloadReports()
               }}
             />
           </S.ButtonAdd> 
