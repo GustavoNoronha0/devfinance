@@ -10,6 +10,7 @@ import { CategoryDebitModule } from './modules/category-debit.module';
 import { CategoryReceivementModule } from './modules/category-receivement.module';
 import { AccountModule } from './modules/account.module';
 import { GraphModule } from './modules/graph.module';
+import { ReportsModule } from './modules/reports.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { GraphModule } from './modules/graph.module';
     ReceivementModule,
     AccountModule,
     GraphModule,
+    ReportsModule,
     GraphQLModule.forRoot(graphqlConfig),
     TypeOrmModule.forRoot(),
   ],
