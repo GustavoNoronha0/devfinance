@@ -13,7 +13,7 @@ import { JwtStrategy } from '../shared/jwt.strategy';
     PassportModule,
     JwtModule.register({
       secret: 'test',
-      signOptions: { expiresIn: 3600 },
+      signOptions: { expiresIn: '30d' },
     }),
     TypeOrmModule.forFeature([Account, AccountRepository]),
   ],
