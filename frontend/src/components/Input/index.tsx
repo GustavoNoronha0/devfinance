@@ -8,12 +8,13 @@ type TypeInput = 'text' | 'email' | 'password' | 'number' | 'date'
 
 export type InputProps = {
   onInputChange?: (value: any) => void
-  type: TypeInput
+  type?: TypeInput
   label?: string
-  placeholder: string
+  placeholder?: string
   disabled?: boolean
   error?: string
   required?: boolean
+  isFilter?: boolean
 } & InputHTMLAttributes<HTMLInputElement>
 
 const Input = ({
@@ -24,7 +25,8 @@ const Input = ({
   error,
   disabled,
   onInputChange,
-  required
+  required,
+  isFilter
 }: InputProps) => {
   const [value, setValue] = useState<any>()
 
@@ -36,7 +38,7 @@ const Input = ({
   }
 
   return (
-    <S.Wrapper>
+    <S.Wrapper isFilter={isFilter}>
       <S.Label htmlFor={name}>{label}</S.Label>
       <S.InputWrapper>
         <S.Input
@@ -49,6 +51,7 @@ const Input = ({
           label={label}
           error={error}
           required={required}
+          isFilter={isFilter}
         />
       </S.InputWrapper>
       <S.Error>{error}</S.Error>

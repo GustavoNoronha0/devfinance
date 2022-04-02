@@ -6,6 +6,7 @@ import Button from '@/components/Button';
 import { useQuery } from '@apollo/client';
 import graphQuery from '@/gql/reports/GraphQuery';
 import reportsQuery from '@/gql/reports/ReportsQuery';
+import downloadReports from '@/gql/reports/DownloadReportsQuery';
 
 const Reports = () => {
   const pageLoaded = typeof window !== 'undefined';

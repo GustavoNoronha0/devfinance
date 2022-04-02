@@ -32,6 +32,14 @@ const buttonsModifiers = {
   delete: (theme: DefaultTheme) => css`
     background-color: ${theme.colors.baseColorRed};
     color: ${theme.colors.white};
+  `,
+
+  filter: (theme: DefaultTheme) => css`
+    background-color: ${theme.colors.tomato};
+    color: ${theme.colors.white};
+    width: 40px;
+    height: 44px;
+    margin: 22px 0 0 10px;
   `
 }
 
@@ -50,6 +58,10 @@ export const ButtonWrapper = styled.button.attrs({
     letter-spacing: 0;
     border: none;
     margin: 10px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);

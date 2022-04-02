@@ -4,12 +4,32 @@ import { InputProps } from '.'
 const inputModifiers = {
   errorInput: (theme: DefaultTheme) => css`
     border: 0.0625rem solid ${theme.colors.baseColorRed};
+  `,
+  inputFilter: () => css`
+    padding: 15px 10px; 
+    width: 150px;
+
+    ::placeholder {
+      font-size: 10px;
+    }
+
+    :-ms-input-placeholder {
+      font-size: 10px;
+    }
+
+    ::-ms-input-placeholder {
+      font-size: 10px;
+    }
   `
 }
 
 export const Wrapper = styled.main.attrs({
   id: 'WrapperInput'
-})``
+})<InputProps>`
+  ${({ isFilter }) => css`
+    ${!!isFilter && 'margin-left: 10px'}
+  `}
+`
 
 export const Label = styled.label`
   ${({ theme }) => css`
@@ -36,7 +56,7 @@ export const InputWrapper = styled.div`
 `
 
 export const Input = styled.input<InputProps>`
-  ${({ theme, error }) => css`
+  ${({ theme, error, isFilter }) => css`
     padding: 20px 16px;
     background: ${theme.colors.white};
     border: 1px solid ${theme.colors.lightGray};
@@ -48,6 +68,7 @@ export const Input = styled.input<InputProps>`
     margin: 5px 0;
 
     ${!!error && inputModifiers.errorInput(theme)}
+    ${!!isFilter && inputModifiers.inputFilter()}
 
     ::placeholder {
       font-family: ${theme.font.family};
