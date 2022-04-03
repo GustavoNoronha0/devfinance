@@ -1,5 +1,5 @@
 export interface AccountGraph {
-  countDebit: string
-  countReceivement: string
+  countDebit: number
+  countReceivement: number
   countTotal: string
 }

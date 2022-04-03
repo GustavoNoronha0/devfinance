@@ -45,8 +45,8 @@ const Reports = () => {
               innerRadius={100}
               colorScale={["tomato", "orange"]}
               data={[
-                  { x: "Pagar", y: graph?.graphAccount?.countDebit },
-                  { x: "Receber", y: graph?.graphAccount?.countReceivement }
+                  { x: "Pagar", y: graph?.graphAccount.countDebit ? graph.graphAccount.countDebit  : 0},
+                  { x: "Receber", y: graph?.graphAccount.countReceivement ?  graph.graphAccount.countReceivement : 0}
                 ]}
               style={{
                 data: {

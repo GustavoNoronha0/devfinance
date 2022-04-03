@@ -4,10 +4,10 @@ import { Field, InputType, ObjectType } from "@nestjs/graphql"
 @InputType({ isAbstract: true })
 export class AccountGraph {
   @Field()
-  countDebit: string
+  countDebit: number
 
   @Field()
-  countReceivement: string
+  countReceivement: number
 
   @Field()
   countTotal: string

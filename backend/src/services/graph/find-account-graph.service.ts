@@ -22,8 +22,8 @@ export class FindAccountGraphService {
       .getCount();
     const countTotal = countReceivement + countDebit
     return {
-      countDebit: countDebit.toFixed(2),
-      countReceivement: countReceivement.toFixed(2),
+      countDebit: countDebit,
+      countReceivement: countReceivement,
       countTotal: countTotal.toFixed(2)
     }
   }

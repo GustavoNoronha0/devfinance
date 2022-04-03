@@ -28,8 +28,8 @@ export class FindAccountReportsService {
     const amountReceivement = !sumAmountReceivements ? 0 : sumAmountReceivements.sum
     const amountTotal = amountReceivement - amountDebit
     return {
-      amountDebit: amountDebit.toFixed(2),
-      amountReceivement: amountReceivement.toFixed(2),
+      amountDebit: amountDebit,
+      amountReceivement: amountReceivement,
       amountTotal: amountTotal.toFixed(2)
     }
   }
