@@ -4,6 +4,8 @@ import Input from '@/components/Input'
 import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import { useMutation } from '@apollo/client'
+import createCategoryReceivementMutation from '@/gql/categoryReceivement/CreateCategoryReceivementMutation'
 
 type CategoryReceivementForm = {
   title: string
@@ -21,9 +23,20 @@ const CategoryReceivementForm = ({ loadCategoryReceivements, onClose }: Category
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
+  const [createCategoryReceivement] = useMutation(createCategoryReceivementMutation);
+
   const handleSubmitCategoryReceivement = useCallback(async (): Promise<void> => {
     try {
+      const pageLoaded = typeof window !== 'undefined';
+      const account =  pageLoaded ? localStorage.getItem('account') : '';
+      const input = {
+        account,
+        title,
+        description
+      }
+      await createCategoryReceivement({ variables: { input } });
       toast.success('Categoria de recebimento salva com Sucesso')
+      onClose()
     } catch (error) {
       toast.error('Erro ao salvar a categoria do recebimento')
     }
