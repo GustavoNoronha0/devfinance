@@ -5,6 +5,8 @@ import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import Select from '@/components/Select'
+import { useMutation } from '@apollo/client'
+import createReceivementMutation from '@/gql/receivement/CreateReceivementMutation'
 
 type ReceivementForm = {
   title: string
@@ -29,9 +31,23 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
   const [value, setValue] = useState('')
   const [date, setDate] = useState<Date>(new Date())
 
+  const [createReceivement] = useMutation(createReceivementMutation);
+
   const handleSubmitReceivement = useCallback(async (): Promise<void> => {
     try {
+      const pageLoaded = typeof window !== 'undefined';
+      const account =  pageLoaded ? localStorage.getItem('account') : '';
+      const input = {
+        account,
+        title,
+        description,
+        categoryReceivement: category,
+        value,
+        date
+      }
+      await createReceivement({ variables: { input } });
       toast.success('Recebimento salvo com Sucesso')
+      onClose()
     } catch (error) {
       toast.error('Erro ao salvar o recebimento')
     }
@@ -60,8 +76,7 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
             value="category"
             onInputChange={setCategory}
             options={[
-              'option1',
-              'option2'
+              '2e120749-f8f0-4d67-879b-95714984ed4b',
             ]}
           />
           <Input
