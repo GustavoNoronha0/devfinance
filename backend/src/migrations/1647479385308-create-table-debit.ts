@@ -35,7 +35,7 @@ export class createTableDebit1647479385308 implements MigrationInterface {
                     },
                     {
                         name: 'value',
-                        type: 'numeric(5,2)',
+                        type: 'integer',
                         isNullable: true
                     },
                     {

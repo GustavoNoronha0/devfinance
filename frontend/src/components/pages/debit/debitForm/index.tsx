@@ -5,6 +5,8 @@ import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import Select from '@/components/Select'
+import { useMutation } from '@apollo/client'
+import CreateDebitMutation from '@/gql/debit/CreateDebitMutation'
 
 type DebitForm = {
   title: string
@@ -29,9 +31,23 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
   const [value, setValue] = useState('')
   const [date, setDate] = useState<Date>(new Date())
 
+  const [createDebit] = useMutation(CreateDebitMutation);
+
   const handleSubmitDebit = useCallback(async (): Promise<void> => {
     try {
+      const pageLoaded = typeof window !== 'undefined';
+      const account =  pageLoaded ? localStorage.getItem('account') : '';
+      const input = {
+        account,
+        title,
+        description,
+        categoryDebit: category,
+        value,
+        date
+      }
+      await createDebit({ variables: { input } });
       toast.success('Debito salvo com Sucesso')
+      onClose()
     } catch (error) {
       toast.error('Erro ao salvar o debito')
     }
@@ -60,8 +76,7 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
             value="category"
             onInputChange={setCategory}
             options={[
-              'option1',
-              'option2'
+              '2e120749-f8f0-4d67-879b-95714984ed4b',
             ]}
           />
           <Input
