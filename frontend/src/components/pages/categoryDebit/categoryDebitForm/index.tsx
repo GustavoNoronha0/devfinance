@@ -4,6 +4,8 @@ import Input from '@/components/Input'
 import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import CreateCategoryDebitMutation from '@/gql/categoryDebit/CreateCategoryDebitMutation'
+import { useMutation } from '@apollo/client'
 
 type CategoryDebitForm = {
   title: string
@@ -21,9 +23,20 @@ const CategoryDebitForm = ({ loadCategoryDebits, onClose }: CategoryDebitFormPro
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
+  const [createCategoryDebit] = useMutation(CreateCategoryDebitMutation);
+
   const handleSubmitCategoryDebit = useCallback(async (): Promise<void> => {
     try {
+      const pageLoaded = typeof window !== 'undefined';
+      const account =  pageLoaded ? localStorage.getItem('account') : '';
+      const input = {
+        account,
+        title,
+        description
+      }
+      await createCategoryDebit({ variables: { input } });
       toast.success('Categoria de Debito salva com Sucesso')
+      onClose()
     } catch (error) {
       toast.error('Erro ao salvar a categoria do debito')
     }
