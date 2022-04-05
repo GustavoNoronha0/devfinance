@@ -11,6 +11,7 @@ export class FindAllCategoryDebitsService {
     const queryBuilder = this.connection.createQueryBuilder();
     queryBuilder.from((innerQueryBuilder) => {
       innerQueryBuilder
+        .select('*')
         .from(CategoryDebit, 'categoryDebit')
         .leftJoinAndSelect('categoryDebit.account', 'account')
         .where('account.id = :accountId', { accountId: input.filters.account });
@@ -44,14 +45,6 @@ export class FindAllCategoryDebitsService {
       return innerQueryBuilder;
     }, 'categoryDebit');
     const pagination = await paginateRaw(queryBuilder, input.paginate);
-    // @ts-ignore
-    pagination.items = pagination.items.map((item) => ({
-      id: item.categoryDebit_id,
-      title: item.categoryDebit_title,
-      description: item.categoryDebit_description,
-      createdAt: item.categoryDebit_createdAt,
-      updatedAt: item.categoryDebit_updatedAt
-    }));
     return pagination;
   }
 }
