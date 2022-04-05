@@ -4,6 +4,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import * as S from './styles'
 import CategoryReceivementAdd from './categoryReceivementAdd'
 import { Category } from '@/gql/models/category'
+import { useQuery } from '@apollo/client'
+import listCategoryReceivementsQuery from '@/gql/categoryReceivement/ListCategoryReceivementQuery'
 
 const CategoryReceivement = () => {
   const [isModalCategoryReceivementAddOpen, setIsModalCategoryReceivementAddOpen] = useState(false)
@@ -12,19 +14,15 @@ const CategoryReceivement = () => {
   const getValueOpen = (value: boolean) => {
     setIsModalCategoryReceivementAddOpen(value)
   }
+  const pageLoaded = typeof window !== 'undefined';
+  const account = pageLoaded ? localStorage.getItem('account') : '';
+  const { data: categoryReceivements, loading: loadingCategoryReceivements } = useQuery(listCategoryReceivementsQuery, {
+    variables: { input: { filters: { account }, paginate: { page: 1, limit: 10 } } },
+  });
   const loadCategoryReceivements = () => {
-    setCategoriesReceivement([
-      {
-        id: 'any_id',
-        title: 'any_title',
-        description: 'any_description'
-      },
-      {
-        id: 'any_id2',
-        title: 'any_title',
-        description: 'any_description'
-      }
-    ])
+    if(categoryReceivements?.categoryReceivements) {
+      setCategoriesReceivement(categoryReceivements.categoryReceivements.items)
+    }
   }
   const onRemove = () => {
     console.log('onRemove')
@@ -36,7 +34,7 @@ const CategoryReceivement = () => {
   useEffect(() => {
     getValueOpen(isModalCategoryReceivementAddOpen)
     loadCategoryReceivements()
-  }, [isModalCategoryReceivementAddOpen])
+  }, [isModalCategoryReceivementAddOpen, categoryReceivements?.categoryReceivements])
   return (
     <S.Container>
       <S.Div>
@@ -55,7 +53,9 @@ const CategoryReceivement = () => {
             }}
           /> 
         </S.ButtonAdd>
-        <ListCategories title="Lista de Categorias de Recebimento" categories={categoriesReceivement} onRemove={onRemove}/>
+        {!loadingCategoryReceivements &&
+          <ListCategories title="Lista de Categorias de Recebimento" categories={categoriesReceivement} onRemove={onRemove}/>
+        }
       </S.Div>
     </S.Container>
   )
