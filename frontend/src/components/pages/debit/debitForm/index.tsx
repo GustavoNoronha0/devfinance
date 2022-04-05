@@ -28,11 +28,10 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState('')
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(0)
   const [date, setDate] = useState<Date>(new Date())
 
   const [createDebit] = useMutation(CreateDebitMutation);
-
   const handleSubmitDebit = useCallback(async (): Promise<void> => {
     try {
       const pageLoaded = typeof window !== 'undefined';
@@ -42,9 +41,10 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
         title,
         description,
         categoryDebit: category,
-        value,
+        value: Number(value),
         date
       }
+      console.log(value)
       await createDebit({ variables: { input } });
       toast.success('Debito salvo com Sucesso')
       onClose()
@@ -77,6 +77,7 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
             onInputChange={setCategory}
             options={[
               '2e120749-f8f0-4d67-879b-95714984ed4b',
+              'b9ff5742-80a9-4f79-9c58-df75d4e9d792',
             ]}
           />
           <Input

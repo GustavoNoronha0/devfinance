@@ -24,12 +24,8 @@ const Select = ({
   required,
   isFilter
 }: SelectProps) => {
-  const [value, setValue] = useState<any>()
-
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newValue = e.currentTarget.value
-    setValue(newValue)
-
+    const newValue = e.target.value
     !!onInputChange && onInputChange(newValue)
   }
 

@@ -28,7 +28,7 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState('')
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(0)
   const [date, setDate] = useState<Date>(new Date())
 
   const [createReceivement] = useMutation(createReceivementMutation);
@@ -42,7 +42,7 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
         title,
         description,
         categoryReceivement: category,
-        value,
+        value: Number(value),
         date
       }
       await createReceivement({ variables: { input } });
@@ -76,7 +76,8 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
             value="category"
             onInputChange={setCategory}
             options={[
-              '2e120749-f8f0-4d67-879b-95714984ed4b',
+              'e4d771c5-d8ad-4f8f-8f23-34e63c28cdfc',
+              'a616ad63-2e60-434f-a857-e33968f66974',
             ]}
           />
           <Input
