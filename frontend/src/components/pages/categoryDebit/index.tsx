@@ -21,7 +21,9 @@ const CategoryDebit = () => {
     variables: { input: { filters: { account }, paginate: { page: 1, limit: 10 } } },
   });
   const loadCategoryDebits = () => {
-    setCategoriesDebit(categoryDebits?.categoryDebits?.items)
+    if(categoryDebits?.categoryDebits) {
+      setCategoriesDebit(categoryDebits.categoryDebits.items)
+    }
   }
   const onRemove = () => {
     console.log('onRemove')
@@ -33,7 +35,7 @@ const CategoryDebit = () => {
   useEffect(() => {
     getValueOpen(isModalCategoryDebitAddOpen)
     loadCategoryDebits()
-  }, [isModalCategoryDebitAddOpen])
+  }, [isModalCategoryDebitAddOpen, categoryDebits?.categoryDebits])
   return (
     <S.Container>
       <S.Div>
@@ -52,7 +54,7 @@ const CategoryDebit = () => {
             }}
           />
         </S.ButtonAdd> 
-        {!loadingCategoryDebits && 
+        {!loadingCategoryDebits &&
           <ListCategories title="Lista de Categorias de Debito" categories={categoriesDebit} onRemove={onRemove}/>
         }
         </S.Div>

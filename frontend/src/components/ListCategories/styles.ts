@@ -154,7 +154,7 @@ export const TableTitle = styled.td`
 `
 
 export const TableDescription = styled.td`
-  width: 110px;
+  width: 120px;
 `
 
 export const TableIcon = styled.td`
