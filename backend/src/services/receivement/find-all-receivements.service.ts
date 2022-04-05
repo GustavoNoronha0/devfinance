@@ -11,6 +11,7 @@ export class FindAllReceivementsService {
     const queryBuilder = this.connection.createQueryBuilder();
     queryBuilder.from((innerQueryBuilder) => {
       innerQueryBuilder
+        .select('*')
         .from(Receivement, 'receivement')
         .leftJoinAndSelect('receivement.account', 'account')
         .leftJoinAndSelect('receivement.categoryReceivement', 'categoryReceivement')
