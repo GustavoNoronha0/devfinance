@@ -11,6 +11,7 @@ export class FindAllDebitsService {
     const queryBuilder = this.connection.createQueryBuilder();
     queryBuilder.from((innerQueryBuilder) => {
       innerQueryBuilder
+        .select('*')
         .from(Debit, 'debit')
         .leftJoinAndSelect('debit.account', 'account')
         .leftJoinAndSelect('debit.categoryDebit', 'categoryDebit')
