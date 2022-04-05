@@ -4,6 +4,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import * as S from './styles'
 import CategoryDebitAdd from './categoryDebitAdd'
 import { Category } from '@/gql/models/category'
+import listCategoryDebitsQuery from '@/gql/categoryDebit/ListCategoryDebitsQuery'
+import { useQuery } from '@apollo/client'
 
 const CategoryDebit = () => {
   const [isModalCategoryDebitAddOpen, setIsModalCategoryDebitAddOpen] = useState(false)
@@ -12,19 +14,14 @@ const CategoryDebit = () => {
   const getValueOpen = (value: boolean) => {
     setIsModalCategoryDebitAddOpen(value)
   }
+
+  const pageLoaded = typeof window !== 'undefined';
+  const account = pageLoaded ? localStorage.getItem('account') : '';
+  const { data: categoryDebits, loading: loadingCategoryDebits } = useQuery(listCategoryDebitsQuery, {
+    variables: { input: { filters: { account }, paginate: { page: 1, limit: 10 } } },
+  });
   const loadCategoryDebits = () => {
-    setCategoriesDebit([
-      {
-        id: 'any_id',
-        title: 'any_title',
-        description: 'any_description'
-      },
-      {
-        id: 'any_id2',
-        title: 'any_title',
-        description: 'any_description'
-      }
-    ])
+    setCategoriesDebit(categoryDebits?.categoryDebits?.items)
   }
   const onRemove = () => {
     console.log('onRemove')
@@ -55,8 +52,10 @@ const CategoryDebit = () => {
             }}
           />
         </S.ButtonAdd> 
-        <ListCategories title="Lista de Categorias de Debito" categories={categoriesDebit} onRemove={onRemove}/>
-      </S.Div>
+        {!loadingCategoryDebits && 
+          <ListCategories title="Lista de Categorias de Debito" categories={categoriesDebit} onRemove={onRemove}/>
+        }
+        </S.Div>
     </S.Container>
   )
 }
