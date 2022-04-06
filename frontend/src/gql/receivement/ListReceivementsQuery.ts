@@ -6,8 +6,12 @@ const listReceivementsQuery = gql`
       items {
         id
         title
-        category
+        categoryReceivement {
+          title
+        }
         description
+        date
+        value
         createdAt
         updatedAt
       }

@@ -54,12 +54,14 @@ export class FindAllReceivementsService {
     const pagination = await paginateRaw(queryBuilder, input.paginate);
     // @ts-ignore
     pagination.items = pagination.items.map((item) => ({
-      id: item.receivement_id,
-      title: item.receivement_title,
-      category: item.categoryReceivement_title,
-      description: item.receivement_description,
-      createdAt: item.receivement_createdAt,
-      updatedAt: item.receivement_updatedAt
+      id: item.id,
+      title: item.title,
+      categoryReceivement: { title: item.categoryReceivement_title },
+      value: item.value,
+      date: item.date,
+      description: item.description,
+      createdAt: item.createdAt,
+      updatedAt: item.updatedAt
     }));
     return pagination;
   }

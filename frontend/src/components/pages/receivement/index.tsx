@@ -4,51 +4,43 @@ import React, { useCallback, useEffect, useState } from 'react'
 import * as S from './styles'
 import ReceivementAdd from './receivementAdd'
 import { Default } from '@/gql/models/default'
+import { useQuery } from '@apollo/client'
+import listReceivementsQuery from '@/gql/receivement/ListReceivementsQuery'
 
 const Receivement = () => {
   const [isModalReceivementAddOpen, setIsModalReceivementAddOpen] = useState(false)
-  const [categoriesReceivement, setCategoriesReceivement] = useState<Default[]>([])
+  const [receivements, setReceivements] = useState<Default[]>([])
 
   const getValueOpen = (value: boolean) => {
     setIsModalReceivementAddOpen(value)
   }
+  const pageLoaded = typeof window !== 'undefined';
+  const account = pageLoaded ? localStorage.getItem('account') : '';
+  const { data: reiceivementsList, loading: loadingReceivements } = useQuery(listReceivementsQuery, {
+    variables: { input: { filters: { account }, paginate: { page: 1, limit: 10 } } },
+  });
   const loadReceivements = () => {
-    setCategoriesReceivement([
-      {
-        id: 'any_id',
-        title: 'any_title',
-        description: 'any_description',
-        category: 'receivement',
-        value: '10.00',
-        date: new Date()
-      },
-      {
-        id: 'any_id2',
-        title: 'any_title',
-        category: 'receivement',
-        description: 'any_description',
-        value: '10.00',
-        date: new Date()
-      }
-    ])
+    if(reiceivementsList?.receivements) {
+      setReceivements(reiceivementsList.receivements.items)
+    }
   }
   const onRemove = () => {
     console.log('onRemove')
   }
-  const handleToggleModalReceivementAdd = useCallback(() => {
+  const handleToggleModalDebitAdd = useCallback(() => {
     setIsModalReceivementAddOpen(!isModalReceivementAddOpen)
   }, [isModalReceivementAddOpen])
 
   useEffect(() => {
     getValueOpen(isModalReceivementAddOpen)
     loadReceivements()
-  }, [isModalReceivementAddOpen])
+  }, [isModalReceivementAddOpen, reiceivementsList?.debits])
   return (
     <S.Container>
       <S.Div>
         <ReceivementAdd
           isOpen={isModalReceivementAddOpen}
-          onClose={handleToggleModalReceivementAdd}
+          onClose={handleToggleModalDebitAdd}
           getValueOpen={getValueOpen}
           loadReceivements={loadReceivements}
         />
@@ -61,7 +53,9 @@ const Receivement = () => {
             }}
           /> 
         </S.ButtonAdd>
-        <ListDefault title="Lista de Recebimentos" defaults={categoriesReceivement} onRemove={onRemove} />
+        {!loadingReceivements && 
+          <ListDefault title="Lista de Recebimentos" defaults={receivements} onRemove={onRemove} />
+        }
       </S.Div>
     </S.Container>
   )
