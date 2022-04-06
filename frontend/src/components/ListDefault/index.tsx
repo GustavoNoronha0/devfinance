@@ -86,7 +86,7 @@ const ListDefault = ({
                     <S.TableItem key={defaultValue.id}>
                       <S.TableTitle>{defaultValue.title}</S.TableTitle>
                       <S.TableDescription>{defaultValue.description}</S.TableDescription>
-                      <S.TableCategory>{defaultValue.category}</S.TableCategory>
+                      <S.TableCategory>{defaultValue.categoryDebit ? defaultValue.categoryDebit?.title : defaultValue.categoryReceivement?.title}</S.TableCategory>
                       <S.TableValue>{defaultValue.value}</S.TableValue>
                       <S.TableDate>{formatData(defaultValue.date.toString())}</S.TableDate>
                       <S.TableIcon onClick={() => onRemove(defaultValue.id)}>

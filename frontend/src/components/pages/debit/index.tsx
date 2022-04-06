@@ -4,33 +4,25 @@ import React, { useCallback, useEffect, useState } from 'react'
 import * as S from './styles'
 import DebitAdd from './debitAdd'
 import { Default } from '@/gql/models/default'
+import { useQuery } from '@apollo/client'
+import listDebitsQuery from '@/gql/debit/ListDebitsQuery'
 
 const Debit = () => {
   const [isModalDebitAddOpen, setIsModalDebitAddOpen] = useState(false)
-  const [categoriesDebit, setCategoriesDebit] = useState<Default[]>([])
+  const [debits, setDebits] = useState<Default[]>([])
 
   const getValueOpen = (value: boolean) => {
     setIsModalDebitAddOpen(value)
   }
+  const pageLoaded = typeof window !== 'undefined';
+  const account = pageLoaded ? localStorage.getItem('account') : '';
+  const { data: debitsList, loading: loadingDebits } = useQuery(listDebitsQuery, {
+    variables: { input: { filters: { account }, paginate: { page: 1, limit: 10 } } },
+  });
   const loadDebits = () => {
-    setCategoriesDebit([
-      {
-        id: 'any_id',
-        title: 'any_title',
-        description: 'any_description',
-        category: 'debit',
-        value: '10.00',
-        date: new Date()
-      },
-      {
-        id: 'any_id2',
-        title: 'any_title',
-        category: 'receivement',
-        description: 'any_description',
-        value: '10.00',
-        date: new Date()
-      }
-    ])
+    if(debitsList?.debits) {
+      setDebits(debitsList.debits.items)
+    }
   }
   const onRemove = () => {
     console.log('onRemove')
@@ -42,7 +34,7 @@ const Debit = () => {
   useEffect(() => {
     getValueOpen(isModalDebitAddOpen)
     loadDebits()
-  }, [isModalDebitAddOpen])
+  }, [isModalDebitAddOpen, debitsList?.debits])
   return (
     <S.Container>
       <S.Div>
@@ -61,7 +53,9 @@ const Debit = () => {
             }}
           /> 
         </S.ButtonAdd>
-        <ListDefault title="Lista de Debitos" defaults={categoriesDebit} onRemove={onRemove} />
+        {!loadingDebits &&
+          <ListDefault title="Lista de Debitos" defaults={debits} onRemove={onRemove} />
+        }
       </S.Div>
     </S.Container>
   )

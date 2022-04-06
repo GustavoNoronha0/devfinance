@@ -54,12 +54,14 @@ export class FindAllDebitsService {
     const pagination = await paginateRaw(queryBuilder, input.paginate);
     // @ts-ignore
     pagination.items = pagination.items.map((item) => ({
-      id: item.debit_id,
-      title: item.debit_title,
-      category: item.categoryDebit_title,
-      description: item.debit_description,
-      createdAt: item.debit_createdAt,
-      updatedAt: item.debit_updatedAt
+      id: item.id,
+      title: item.title,
+      categoryDebit: { title: item.categoryDebit_title },
+      description: item.description,
+      value: item.value,
+      date: item.date,
+      createdAt: item.createdAt,
+      updatedAt: item.updatedAt
     }));
     return pagination;
   }

@@ -6,8 +6,12 @@ const listDebitsQuery = gql`
       items {
         id
         title
-        category
-        description
+        categoryDebit {
+          title
+        }
+        value
+        date
+        description 
         createdAt
         updatedAt
       }
