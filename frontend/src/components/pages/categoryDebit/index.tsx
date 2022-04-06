@@ -41,7 +41,7 @@ const CategoryDebit = () => {
       try {
         await deleteCategoryDebit({ variables: { id } });
         loadCategoryDebits()
-        handleToggleModalCategoryDebitAdd()
+        handleToggleModalCategoryDebitDelete()
       } catch (error) {
         loadCategoryDebits()
       }
