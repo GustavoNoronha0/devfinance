@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from 'react'
 import * as S from './styles'
 export * from './mock'
 
-export type TypeButton = 'enter' | 'save' | 'add' | 'cancel' | 'delete' | 'download' | 'filter'
+export type TypeButton = 'enter' | 'save' | 'add' | 'cancel' | 'delete' | 'download' | 'filter' | 'success'
 
 export type ButtonProps = {
   children?: React.ReactNode

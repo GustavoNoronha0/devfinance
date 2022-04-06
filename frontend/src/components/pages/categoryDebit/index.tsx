@@ -5,14 +5,23 @@ import * as S from './styles'
 import CategoryDebitAdd from './categoryDebitAdd'
 import { Category } from '@/gql/models/category'
 import listCategoryDebitsQuery from '@/gql/categoryDebit/ListCategoryDebitsQuery'
-import { useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
+import CategoryDebitDelete from './categoryDebitDelete'
+import { toast } from 'react-toastify'
+import deleteCategoryDebitMutation from '@/gql/categoryDebit/DeleteCategoryDebitMutation'
 
 const CategoryDebit = () => {
   const [isModalCategoryDebitAddOpen, setIsModalCategoryDebitAddOpen] = useState(false)
+  const [isModalCategoryDebitDeleteOpen, setIsModalCategoryDebitDeleteOpen] = useState(false)
+  const [idToDelete, setIdToDelete] = useState('')
   const [categoriesDebit, setCategoriesDebit] = useState<Category[]>([])
 
   const getValueOpen = (value: boolean) => {
     setIsModalCategoryDebitAddOpen(value)
+  }
+
+  const getValueOpenDelete = (value: boolean) => {
+    setIsModalCategoryDebitDeleteOpen(value)
   }
 
   const pageLoaded = typeof window !== 'undefined';
@@ -24,21 +33,49 @@ const CategoryDebit = () => {
     if(categoryDebits?.categoryDebits) {
       setCategoriesDebit(categoryDebits.categoryDebits.items)
     }
-  }
-  const onRemove = () => {
-    console.log('onRemove')
+  }  
+
+  const [deleteCategoryDebit] = useMutation(deleteCategoryDebitMutation);
+  
+  const onDelete =  useCallback(async (id: string) => {
+      try {
+        await deleteCategoryDebit({ variables: { id } });
+        loadCategoryDebits()
+        handleToggleModalCategoryDebitAdd()
+      } catch (error) {
+        loadCategoryDebits()
+      }
+      toast.success('Categoria excluída com sucesso!')
+    },
+    [loadCategoryDebits]
+  )
+  const onRemove = (id: string) => {
+    setIsModalCategoryDebitDeleteOpen(true)
+    setIdToDelete(id)
   }
   const handleToggleModalCategoryDebitAdd = useCallback(() => {
     setIsModalCategoryDebitAddOpen(!isModalCategoryDebitAddOpen)
   }, [isModalCategoryDebitAddOpen])
 
+  const handleToggleModalCategoryDebitDelete = useCallback(() => {
+    setIsModalCategoryDebitDeleteOpen(!isModalCategoryDebitDeleteOpen)
+  }, [isModalCategoryDebitDeleteOpen])
+
   useEffect(() => {
     getValueOpen(isModalCategoryDebitAddOpen)
+    getValueOpenDelete(isModalCategoryDebitDeleteOpen)
     loadCategoryDebits()
-  }, [isModalCategoryDebitAddOpen, categoryDebits?.categoryDebits])
+  }, [isModalCategoryDebitAddOpen, isModalCategoryDebitDeleteOpen, categoryDebits?.categoryDebits])
   return (
     <S.Container>
       <S.Div>
+        <CategoryDebitDelete
+          isOpen={isModalCategoryDebitDeleteOpen}
+          onClose={handleToggleModalCategoryDebitDelete}
+          getValueOpen={getValueOpenDelete}
+          onDelete={onDelete}
+          id={idToDelete}
+        />
         <CategoryDebitAdd
           isOpen={isModalCategoryDebitAddOpen}
           onClose={handleToggleModalCategoryDebitAdd}

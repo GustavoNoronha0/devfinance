@@ -34,6 +34,11 @@ const buttonsModifiers = {
     color: ${theme.colors.white};
   `,
 
+  success: (theme: DefaultTheme) => css`
+    background-color: ${theme.colors.baseColorGreen};
+    color: ${theme.colors.white};
+  `,
+
   filter: (theme: DefaultTheme) => css`
     background-color: ${theme.colors.tomato};
     color: ${theme.colors.white};
