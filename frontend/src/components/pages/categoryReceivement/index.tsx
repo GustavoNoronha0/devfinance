@@ -31,9 +31,9 @@ const CategoryReceivement = () => {
     variables: { input: { filters: { account }, paginate: { page: 1, limit: 10 } } },
   });
 
-  const loadCategoryReceivements = () => {
+  const loadCategoryReceivements = async () => {
+    await refetch()
     if(categoryReceivements?.categoryReceivements) {
-      refetch()
       setCategoriesReceivement(categoryReceivements.categoryReceivements.items)
     }
   }  
@@ -47,11 +47,6 @@ const CategoryReceivement = () => {
   const handleToggleModalCategoryReceivementDelete = useCallback(() => {
     setIsModalCategoryReceivementDeleteOpen(!isModalCategoryReceivementDeleteOpen)
   }, [isModalCategoryReceivementDeleteOpen])
-
-  const refreshAndClose = async () => {
-    handleToggleModalCategoryReceivementDelete()
-    await refetch() 
-  }
   
   const onDelete =  async (id: string) => {
       try {
@@ -59,7 +54,8 @@ const CategoryReceivement = () => {
       } catch (error) {
         toast.success('Erro ao excluir categoria!')
       }
-      refreshAndClose()
+      handleToggleModalCategoryReceivementDelete()
+      await refetch()
       toast.success('Categoria excluída com sucesso!')
     }
 

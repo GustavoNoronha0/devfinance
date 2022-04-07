@@ -31,9 +31,9 @@ const Debit = () => {
     variables: { input: { filters: { account }, paginate: { page: 1, limit: 10 } } },
   });
 
-  const loadDebits = () => {
+  const loadDebits = async () => {
+    await refetch()
     if(debits?.debits) {
-      refetch()
       setDebits(debits.debits.items)
     }
   }  
@@ -47,11 +47,6 @@ const Debit = () => {
   const handleToggleModalDebitDelete = useCallback(() => {
     setIsModalDebitDeleteOpen(!isModalDebitDeleteOpen)
   }, [isModalDebitDeleteOpen])
-
-  const refreshAndClose = async () => {
-    handleToggleModalDebitDelete()
-    await refetch() 
-  }
   
   const onDelete =  async (id: string) => {
       try {
@@ -59,7 +54,8 @@ const Debit = () => {
       } catch (error) {
         toast.success('Erro ao excluir categoria!')
       }
-      refreshAndClose()
+      handleToggleModalDebitDelete()
+      await refetch()
       toast.success('Categoria excluída com sucesso!')
     }
 
