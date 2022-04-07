@@ -1,12 +1,14 @@
 import * as S from './styles'
 import Button from '@/components/Button'
 import Input from '@/components/Input'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import Select from '@/components/Select'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import createReceivementMutation from '@/gql/receivement/CreateReceivementMutation'
+import listCategoryReceivementsQuery from '@/gql/categoryReceivement/ListCategoryReceivementQuery'
+import { Category } from '@/gql/models/category'
 
 type ReceivementForm = {
   title: string
@@ -32,11 +34,13 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
   const [date, setDate] = useState<Date>(new Date())
 
   const [createReceivement] = useMutation(createReceivementMutation);
+  
+  const [categoriesReceivementOptions, setCategoriesReceivementOptions] = useState([])
 
+  const pageLoaded = typeof window !== 'undefined';
+  const account =  pageLoaded ? localStorage.getItem('account') : '';
   const handleSubmitReceivement = useCallback(async (): Promise<void> => {
     try {
-      const pageLoaded = typeof window !== 'undefined';
-      const account =  pageLoaded ? localStorage.getItem('account') : '';
       const input = {
         account,
         title,
@@ -53,6 +57,21 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
       toast.error('Erro ao salvar o recebimento')
     }
   }, [title, description, value, category, date, loadReceivements, onClose])
+
+  const { data: categoryReceivements } = useQuery(listCategoryReceivementsQuery, {
+    variables: { input: { filters: { account }, paginate: { page: 1, limit: 1000 } } },
+  });
+  
+  const loadCategories = async () => {
+    if(categoryReceivements?.categoryReceivements) {
+      const categoriesReceivementsToOptions = categoryReceivements.categoryReceivements.items.map((category: Category) => category.title)
+      setCategoriesReceivementOptions(categoriesReceivementsToOptions)
+    }
+  } 
+  
+  useEffect(() => {
+    loadCategories()
+  }, [categoryReceivements?.categoryReceivements])
 
   return (
     <S.Container>
@@ -76,10 +95,7 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
             label="Categoria"
             value="category"
             onInputChange={setCategory}
-            options={[
-              'e4d771c5-d8ad-4f8f-8f23-34e63c28cdfc',
-              'a616ad63-2e60-434f-a857-e33968f66974',
-            ]}
+            options={categoriesReceivementOptions}
           />
           <Input
             label="Valor"
