@@ -45,7 +45,7 @@ export const Logo = styled.img`
   }
 `
 
-export const Link = styled.a`
+export const Link = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,4 +56,7 @@ export const Link = styled.a`
   text-decoration: none;
   font-weight: bold;
   margin-top: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
 `
