@@ -21,7 +21,7 @@ describe('CreateReceivementService', () => {
     const { sut, repository } = await makeSut();
     const receivementCreateInput: ReceivementInput = {
       account: faker.random.uuid(),
-      categoryReceivement: faker.random.uuid(),
+      categoryReceivement: faker.random.word(),
       title: faker.random.words(),
       description: faker.random.words(),
       value: faker.random.number(),

@@ -14,7 +14,7 @@ export class CreateReceivementService {
   ) { }
   async create(input: CreateReceivementInput): Promise<Receivement> {
     const account = await this.accountRepository.findOne({ where: { id: input.account } })
-    const categoryReceivement = await this.categoryReceivementRepository.findOne({ where: { id: input.categoryReceivement } })
+    const categoryReceivement = await this.categoryReceivementRepository.findOne({ where: { title: input.categoryReceivement } })
     const receivementToCreate = this.receivementRepository.create(
       {
         account,

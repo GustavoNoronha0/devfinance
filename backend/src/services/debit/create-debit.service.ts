@@ -14,7 +14,7 @@ export class CreateDebitService {
   ) { }
   async create(input: CreateDebitInput): Promise<Debit> {
     const account = await this.accountRepository.findOne({ where: { id: input.account } })
-    const categoryDebit = await this.categoryDebitRepository.findOne({ where: { id: input.categoryDebit } })
+    const categoryDebit = await this.categoryDebitRepository.findOne({ where: { title: input.categoryDebit } })
     const debitToCreate = this.debitRepository.create(
       {
         account,

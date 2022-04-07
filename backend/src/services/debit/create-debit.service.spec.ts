@@ -21,7 +21,7 @@ describe('CreateDebitService', () => {
     const { sut, repository } = await makeSut();
     const debitCreateInput: DebitInput = {
       account: faker.random.uuid(),
-      categoryDebit: faker.random.uuid(),
+      categoryDebit: faker.random.word(),
       title: faker.random.words(),
       description: faker.random.words(),
       value: faker.random.number(),
