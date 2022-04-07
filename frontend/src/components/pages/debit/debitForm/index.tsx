@@ -44,9 +44,9 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
         value: Number(value),
         date
       }
-      console.log(value)
       await createDebit({ variables: { input } });
       toast.success('Debito salvo com Sucesso')
+      loadDebits()
       onClose()
     } catch (error) {
       toast.error('Erro ao salvar o debito')

@@ -11,7 +11,15 @@ export class FindAllDebitsService {
     const queryBuilder = this.connection.createQueryBuilder();
     queryBuilder.from((innerQueryBuilder) => {
       innerQueryBuilder
-        .select('*')
+        .select([
+          'debit.id', 
+          'debit.title', 
+          'debit.description',
+          'debit.value',
+          'debit.date',
+          'debit.createdAt',
+          'debit.updatedAt'
+        ])
         .from(Debit, 'debit')
         .leftJoinAndSelect('debit.account', 'account')
         .leftJoinAndSelect('debit.categoryDebit', 'categoryDebit')
@@ -54,14 +62,14 @@ export class FindAllDebitsService {
     const pagination = await paginateRaw(queryBuilder, input.paginate);
     // @ts-ignore
     pagination.items = pagination.items.map((item) => ({
-      id: item.id,
-      title: item.title,
+      id: item.debit_id,
+      title: item.debit_title,
       categoryDebit: { title: item.categoryDebit_title },
-      description: item.description,
-      value: item.value,
-      date: item.date,
-      createdAt: item.createdAt,
-      updatedAt: item.updatedAt
+      description: item.debit_description,
+      value: item.debit_value,
+      date: item.debit_date,
+      createdAt: item.debit_createdAt,
+      updatedAt: item.debit_updatedAt
     }));
     return pagination;
   }

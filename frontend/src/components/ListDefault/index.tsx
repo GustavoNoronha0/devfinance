@@ -1,6 +1,6 @@
 import * as S from './styles'
 export * from './mock'
-import React, { useState }from 'react'
+import React, { useEffect, useState }from 'react'
 import { Default } from '@/gql/models/default'
 import { formatData } from 'src/utils/helpers/index'
 import Select from '../Select'
@@ -8,20 +8,24 @@ import Input from '../Input'
 export type TypeListDefault = 'success' | 'error'
 
 export type ListDefaultProps = {
-  title: string
   onRemove: (id: string) => void
   defaults: Default[]
+  filters?: (initialDate?: Date, finalDate?: Date, category?: string, other?: string) => void
 }
 
 const ListDefault = ({
-  title,
   onRemove,
-  defaults
+  defaults,
+  filters
 }: ListDefaultProps) => {  
   const [intialDate, setIntialDate] = useState()
   const [finalDate, setFinalDate] = useState()
-  const [others, setOthers] = useState()
+  const [other, setOther] = useState()
   const [category, setCategory] = useState()
+
+  useEffect(() => {
+    !!filters && filters(intialDate, finalDate, category, other)
+  }, [intialDate, finalDate, category, other])
   return (
     <S.Wrapper>
       <S.Animate>
@@ -47,7 +51,7 @@ const ListDefault = ({
                     <Input
                       label="Titulo ou Descricao"
                       type="text"
-                      onInputChange={setOthers}
+                      onInputChange={setOther}
                       placeholder="Digite o Titulo ou Descricao"
                       isFilter={true}
                     />

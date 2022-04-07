@@ -11,7 +11,13 @@ export class FindAllCategoryReceivementsService {
     const queryBuilder = this.connection.createQueryBuilder();
     queryBuilder.from((innerQueryBuilder) => {
       innerQueryBuilder
-        .select('*')
+        .select([
+          'categoryReceivement.id', 
+          'categoryReceivement.title', 
+          'categoryReceivement.description',
+          'categoryReceivement.createdAt',
+          'categoryReceivement.updatedAt'
+        ])
         .from(CategoryReceivement, 'categoryReceivement')
         .leftJoinAndSelect('categoryReceivement.account', 'account')
         .where('account.id = :accountId', { accountId: input.filters.account });
@@ -45,6 +51,14 @@ export class FindAllCategoryReceivementsService {
       return innerQueryBuilder;
     }, 'categoryReceivement');
     const pagination = await paginateRaw(queryBuilder, input.paginate);
+    // @ts-ignore
+    pagination.items = pagination.items.map((item) => ({
+      id: item.categoryReceivement_id,
+      title: item.categoryReceivement_title,
+      description: item.categoryReceivement_description,
+      createdAt: item.categoryReceivement_createdAt,
+      updatedAt: item.categoryReceivement_updatedAt
+    }));
     return pagination;
   }
 }

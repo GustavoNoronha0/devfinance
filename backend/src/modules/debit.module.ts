@@ -2,6 +2,7 @@ import { AccountRepository } from '@/repositories/account.repository';
 import { CategoryDebitRepository } from '@/repositories/category-debit.repository';
 import { DebitRepository } from '@/repositories/debit.repository';
 import { CreateDebitResolver } from '@/resolvers/debit/create-debit.resolver';
+import { DeleteDebitResolver } from '@/resolvers/debit/delete-debit.resolver';
 import { FindAllDebitsResolver } from '@/resolvers/debit/find-all-debits.resolver';
 import { FindDebitResolver } from '@/resolvers/debit/find-debit.resolver';
 import { UpdateDebitResolver } from '@/resolvers/debit/update-debit.resolver';
@@ -23,7 +24,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     FindDebitService,
     FindDebitResolver,
     DeleteDebitService,
-    DeleteDebitService,
+    DeleteDebitResolver,
     UpdateDebitService,
     UpdateDebitResolver
   ],
