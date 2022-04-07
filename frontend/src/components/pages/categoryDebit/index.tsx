@@ -5,7 +5,7 @@ import * as S from './styles'
 import CategoryDebitAdd from './categoryDebitAdd'
 import { Category } from '@/gql/models/category'
 import listCategoryDebitsQuery from '@/gql/categoryDebit/ListCategoryDebitsQuery'
-import { useMutation, useQuery } from '@apollo/client'
+import { useApolloClient, useMutation, useQuery } from '@apollo/client'
 import CategoryDebitDelete from './categoryDebitDelete'
 import { toast } from 'react-toastify'
 import deleteCategoryDebitMutation from '@/gql/categoryDebit/DeleteCategoryDebitMutation'
@@ -15,6 +15,7 @@ const CategoryDebit = () => {
   const [isModalCategoryDebitDeleteOpen, setIsModalCategoryDebitDeleteOpen] = useState(false)
   const [idToDelete, setIdToDelete] = useState('')
   const [categoriesDebit, setCategoriesDebit] = useState<Category[]>([])
+  const apolloClient = useApolloClient();
 
   const getValueOpen = (value: boolean) => {
     setIsModalCategoryDebitAddOpen(value)
@@ -72,9 +73,18 @@ const CategoryDebit = () => {
     getValueOpenDelete(isModalCategoryDebitDeleteOpen)
   }, [isModalCategoryDebitAddOpen, isModalCategoryDebitDeleteOpen])
 
+  const filters = async (initialDate?: Date, finalDate?: Date, other?: string) => {
+    const queryParams = {
+      query: listCategoryDebitsQuery,
+      variables: { input: { filters: { account, initialDate, finalDate, other }, paginate: { page: 1, limit: 10 } } },
+    };
+    const { data: categoryDebits } = await apolloClient.query(queryParams);
+    setCategoriesDebit(categoryDebits.categoryDebits.items)
+  }
+
   useEffect(() => {
     loadCategoryDebits()
-  }, [categoryDebits?.categoryDebits])
+  }, [categoryDebits?.categoryDebits,])
 
   return (
     <S.Container>
@@ -102,7 +112,7 @@ const CategoryDebit = () => {
           />
         </S.ButtonAdd> 
         {!loadingCategoryDebits &&
-          <ListCategories title="Lista de Categorias de Debito" categories={categoriesDebit} onRemove={onRemove}/>
+          <ListCategories filters={filters} categories={categoriesDebit} onRemove={onRemove}/>
         }
         </S.Div>
     </S.Container>

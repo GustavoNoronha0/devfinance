@@ -1,25 +1,30 @@
 import * as S from './styles'
 export * from './mock'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Category } from '@/gql/models/category'
 import Input from '../Input'
 import Button from '../Button'
 export type TypeListCategories = 'success' | 'error'
 
 export type ListCategoriesProps = {
-  title: string
   onRemove: (id: string) => void
   categories: Category[]
+  filters: (initialDate?: Date, finalDate?: Date, other?: string) => void
 }
 
 const ListCategories = ({
-  title,
   onRemove,
-  categories
+  categories,
+  filters
 }: ListCategoriesProps) => {
   const [intialDate, setIntialDate] = useState()
   const [finalDate, setFinalDate] = useState()
-  const [others, setOthers] = useState()
+  const [other, setOther] = useState('')
+
+  useEffect(() => {
+    filters(intialDate, finalDate, other)
+  }, [intialDate, finalDate, other])
+
   return (
     <S.Wrapper>
       <S.Animate>
@@ -45,18 +50,11 @@ const ListCategories = ({
                     <Input
                       label="Titulo ou Descricao"
                       type="text"
-                      onInputChange={setOthers}
+                      onInputChange={setOther}
                       placeholder="Digite o Titulo ou Descricao"
                       isFilter={true}
                     />
                 </S.HeaderLeft>
-                <S.HeaderRight>
-                  <S.Filters>
-                    <Button typeStyle="filter" type="submit">
-                      Filtrar
-                    </Button>
-                  </S.Filters>
-                </S.HeaderRight>
               </S.Header>
               <S.Content>
                 <S.Table>

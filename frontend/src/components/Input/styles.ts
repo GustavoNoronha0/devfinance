@@ -7,7 +7,8 @@ const inputModifiers = {
   `,
   inputFilter: () => css`
     padding: 15px 10px; 
-    width: 150px;
+    max-height: 50px;
+    width: 170px;
 
     ::placeholder {
       font-size: 10px;
