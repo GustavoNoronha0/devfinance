@@ -1,6 +1,7 @@
 import { AccountRepository } from '@/repositories/account.repository';
 import { CategoryReceivementRepository } from '@/repositories/category-receivement.repository';
 import { CreateCategoryReceivementResolver } from '@/resolvers/category-receivement/create-category-receivement.resolver';
+import { DeleteCategoryReceivementResolver } from '@/resolvers/category-receivement/delete-category-receivement.resolver';
 import { FindAllCategoryReceivementsResolver } from '@/resolvers/category-receivement/find-all-category-receivements.resolver';
 import { FindCategoryReceivementResolver } from '@/resolvers/category-receivement/find-category-receivement.resolver';
 import { UpdateCategoryReceivementResolver } from '@/resolvers/category-receivement/update-category-receivement.resolver';
@@ -22,7 +23,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     FindCategoryReceivementService,
     FindCategoryReceivementResolver,
     DeleteCategoryReceivementService,
-    DeleteCategoryReceivementService,
+    DeleteCategoryReceivementResolver,
     UpdateCategoryReceivementService,
     UpdateCategoryReceivementResolver
   ],

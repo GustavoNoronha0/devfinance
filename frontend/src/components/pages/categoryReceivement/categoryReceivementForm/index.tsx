@@ -36,7 +36,8 @@ const CategoryReceivementForm = ({ loadCategoryReceivements, onClose }: Category
       }
       await createCategoryReceivement({ variables: { input } });
       toast.success('Categoria de recebimento salva com Sucesso')
-      onClose()
+      loadCategoryReceivements()
+      onClose() 
     } catch (error) {
       toast.error('Erro ao salvar a categoria do recebimento')
     }
