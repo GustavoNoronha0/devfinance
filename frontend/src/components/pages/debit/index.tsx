@@ -108,7 +108,7 @@ const Debit = () => {
           />
         </S.ButtonAdd> 
         {!loadingDebits &&
-          <ListDefault filters={filters} defaults={defaults} onRemove={onRemove}/>
+          <ListDefault filters={filters} defaults={defaults} onRemove={onRemove} isDebit/>
         }
         </S.Div>
     </S.Container>

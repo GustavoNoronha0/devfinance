@@ -47,7 +47,7 @@ export class FindAllReceivementsService {
       }
       if (input.filters?.category) {
         innerQueryBuilder.andWhere(
-          'categoryReceivement.id = :category',
+          'categoryReceivement.title = :category',
           { category: input.filters!.category },
         );
       }

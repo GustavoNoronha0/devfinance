@@ -5,27 +5,58 @@ import { Default } from '@/gql/models/default'
 import { formatData } from 'src/utils/helpers/index'
 import Select from '../Select'
 import Input from '../Input'
+import { useQuery } from '@apollo/client'
+import listCategoryDebitsQuery from '@/gql/categoryDebit/ListCategoryDebitsQuery'
+import { Category } from '@/gql/models/category'
+import listCategoryReceivementsQuery from '@/gql/categoryReceivement/ListCategoryReceivementQuery'
 export type TypeListDefault = 'success' | 'error'
 
 export type ListDefaultProps = {
   onRemove: (id: string) => void
   defaults: Default[]
+  isDebit?: boolean
   filters?: (initialDate?: Date, finalDate?: Date, category?: string, other?: string) => void
 }
 
 const ListDefault = ({
   onRemove,
   defaults,
-  filters
+  filters,
+  isDebit
 }: ListDefaultProps) => {  
   const [intialDate, setIntialDate] = useState()
   const [finalDate, setFinalDate] = useState()
   const [other, setOther] = useState()
   const [category, setCategory] = useState()
+  const [categoriesDebitOptions, setCategoriesDebitOptions] = useState([])
+  const [categoryReceivementsOptions, setCategoryReceivementsOptions] = useState([])
 
   useEffect(() => {
     !!filters && filters(intialDate, finalDate, category, other)
   }, [intialDate, finalDate, category, other])
+  
+  const pageLoaded = typeof window !== 'undefined';
+  const account = pageLoaded ? localStorage.getItem('account') : '';
+  const { data: categoryDebits } = useQuery(listCategoryDebitsQuery, {
+    variables: { input: { filters: { account }, paginate: { page: 1, limit: 1000 } } },
+  });
+  const { data: categoryReceivements } = useQuery(listCategoryReceivementsQuery, {
+    variables: { input: { filters: { account }, paginate: { page: 1, limit: 1000 } } },
+  });
+  const loadCategories = async () => {
+    if(categoryDebits?.categoryDebits) {
+      const categoriesDebitsToOptions = categoryDebits.categoryDebits.items.map((category: Category) => category.title)
+      setCategoriesDebitOptions(categoriesDebitsToOptions)
+    }
+    if(categoryReceivements?.categoryReceivements){
+      const categoriesReceivementsToOptions = categoryReceivements.categoryReceivements.items.map((category: Category) => category.title)
+      setCategoryReceivementsOptions(categoriesReceivementsToOptions)
+    }
+  } 
+  
+  useEffect(() => {
+    loadCategories()
+  }, [categoryDebits?.categoryDebits, categoryReceivements?.categoryReceivements])
   return (
     <S.Wrapper>
       <S.Animate>
@@ -59,10 +90,7 @@ const ListDefault = ({
                       label="Categoria"
                       value="category"
                       onInputChange={setCategory}
-                      options={[
-                        'option1',
-                        'option2'
-                      ]}
+                      options={isDebit ? categoriesDebitOptions : categoryReceivementsOptions}
                       isFilter={true}
                     />
                   </S.HeaderLeft>

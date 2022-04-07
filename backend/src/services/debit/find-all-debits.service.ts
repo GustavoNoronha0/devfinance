@@ -47,7 +47,7 @@ export class FindAllDebitsService {
       }
       if (input.filters?.category) {
         innerQueryBuilder.andWhere(
-          'categoryDebit.id = :category',
+          'categoryDebit.title = :category',
           { category: input.filters!.category },
         );
       }
