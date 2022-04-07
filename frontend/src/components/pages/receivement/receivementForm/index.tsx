@@ -48,6 +48,7 @@ const ReceivementForm = ({ loadReceivements, onClose }: ReceivementFormProps) =>
       await createReceivement({ variables: { input } });
       toast.success('Recebimento salvo com Sucesso')
       onClose()
+      loadReceivements()
     } catch (error) {
       toast.error('Erro ao salvar o recebimento')
     }

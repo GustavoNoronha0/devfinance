@@ -11,7 +11,15 @@ export class FindAllReceivementsService {
     const queryBuilder = this.connection.createQueryBuilder();
     queryBuilder.from((innerQueryBuilder) => {
       innerQueryBuilder
-        .select('*')
+        .select([
+          'receivement.id', 
+          'receivement.title', 
+          'receivement.description',
+          'receivement.value',
+          'receivement.date',
+          'receivement.createdAt',
+          'receivement.updatedAt'
+        ])
         .from(Receivement, 'receivement')
         .leftJoinAndSelect('receivement.account', 'account')
         .leftJoinAndSelect('receivement.categoryReceivement', 'categoryReceivement')
@@ -54,14 +62,14 @@ export class FindAllReceivementsService {
     const pagination = await paginateRaw(queryBuilder, input.paginate);
     // @ts-ignore
     pagination.items = pagination.items.map((item) => ({
-      id: item.id,
-      title: item.title,
+      id: item.receivement_id,
+      title: item.receivement_title,
       categoryReceivement: { title: item.categoryReceivement_title },
-      value: item.value,
-      date: item.date,
-      description: item.description,
-      createdAt: item.createdAt,
-      updatedAt: item.updatedAt
+      description: item.receivement_description,
+      value: item.receivement_value,
+      date: item.receivement_date,
+      createdAt: item.receivement_createdAt,
+      updatedAt: item.receivement_updatedAt
     }));
     return pagination;
   }
