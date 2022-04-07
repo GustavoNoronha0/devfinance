@@ -1,12 +1,14 @@
 import * as S from './styles'
 import Button from '@/components/Button'
 import Input from '@/components/Input'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import Select from '@/components/Select'
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import CreateDebitMutation from '@/gql/debit/CreateDebitMutation'
+import { Category } from '@/gql/models/category'
+import listCategoryDebitsQuery from '@/gql/categoryDebit/ListCategoryDebitsQuery'
 
 type DebitForm = {
   title: string
@@ -30,12 +32,14 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
   const [category, setCategory] = useState('')
   const [value, setValue] = useState(0)
   const [date, setDate] = useState<Date>(new Date())
+  const [categoriesDebitOptions, setCategoriesDebitOptions] = useState([])
 
   const [createDebit] = useMutation(CreateDebitMutation);
+
+  const pageLoaded = typeof window !== 'undefined';
+  const account = pageLoaded ? localStorage.getItem('account') : '';
   const handleSubmitDebit = useCallback(async (): Promise<void> => {
     try {
-      const pageLoaded = typeof window !== 'undefined';
-      const account =  pageLoaded ? localStorage.getItem('account') : '';
       const input = {
         account,
         title,
@@ -52,6 +56,21 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
       toast.error('Erro ao salvar o debito')
     }
   }, [title, description, value, category, date, loadDebits, onClose])
+
+  const { data: categoryDebits } = useQuery(listCategoryDebitsQuery, {
+    variables: { input: { filters: { account }, paginate: { page: 1, limit: 1000 } } },
+  });
+  
+  const loadCategories = async () => {
+    if(categoryDebits?.categoryDebits) {
+      const categoriesDebitsToOptions = categoryDebits.categoryDebits.items.map((category: Category) => category.title)
+      setCategoriesDebitOptions(categoriesDebitsToOptions)
+    }
+  } 
+  
+  useEffect(() => {
+    loadCategories()
+  }, [categoryDebits?.categoryDebits])
 
   return (
     <S.Container>
@@ -75,10 +94,7 @@ const DebitForm = ({ loadDebits, onClose }: DebitFormProps) => {
             label="Categoria"
             value="category"
             onInputChange={setCategory}
-            options={[
-              '2e120749-f8f0-4d67-879b-95714984ed4b',
-              'b9ff5742-80a9-4f79-9c58-df75d4e9d792',
-            ]}
+            options={categoriesDebitOptions}
           />
           <Input
             label="Valor"
