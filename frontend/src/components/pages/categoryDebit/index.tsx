@@ -32,6 +32,7 @@ const CategoryDebit = () => {
 
   const loadCategoryDebits = () => {
     if(categoryDebits?.categoryDebits) {
+      refetch()
       setCategoriesDebit(categoryDebits.categoryDebits.items)
     }
   }  

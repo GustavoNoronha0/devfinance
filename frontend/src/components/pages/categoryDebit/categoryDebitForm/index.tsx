@@ -34,6 +34,7 @@ const CategoryDebitForm = ({ loadCategoryDebits, onClose }: CategoryDebitFormPro
         title,
         description
       }
+      loadCategoryDebits()
       await createCategoryDebit({ variables: { input } });
       toast.success('Categoria de Debito salva com Sucesso')
       onClose()
