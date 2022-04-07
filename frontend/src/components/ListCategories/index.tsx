@@ -9,7 +9,7 @@ export type TypeListCategories = 'success' | 'error'
 export type ListCategoriesProps = {
   onRemove: (id: string) => void
   categories: Category[]
-  filters: (initialDate?: Date, finalDate?: Date, other?: string) => void
+  filters?: (initialDate?: Date, finalDate?: Date, other?: string) => void
 }
 
 const ListCategories = ({
@@ -22,7 +22,7 @@ const ListCategories = ({
   const [other, setOther] = useState('')
 
   useEffect(() => {
-    filters(intialDate, finalDate, other)
+    !!filters && filters(intialDate, finalDate, other)
   }, [intialDate, finalDate, other])
 
   return (

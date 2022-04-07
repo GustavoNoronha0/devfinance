@@ -63,13 +63,6 @@ const ListDefault = ({
                       isFilter={true}
                     />
                   </S.HeaderLeft>
-                <S.HeaderRight>
-                  <S.Filters>
-                    <Button typeStyle="filter" type="submit">
-                      Filtrar
-                    </Button>
-                  </S.Filters>
-                </S.HeaderRight>
               </S.Header>
               <S.Content>
                 <S.Table>
