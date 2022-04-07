@@ -26,9 +26,10 @@ const CategoryDebit = () => {
 
   const pageLoaded = typeof window !== 'undefined';
   const account = pageLoaded ? localStorage.getItem('account') : '';
-  const { data: categoryDebits, loading: loadingCategoryDebits } = useQuery(listCategoryDebitsQuery, {
+  const { data: categoryDebits, loading: loadingCategoryDebits, refetch } = useQuery(listCategoryDebitsQuery, {
     variables: { input: { filters: { account }, paginate: { page: 1, limit: 10 } } },
   });
+
   const loadCategoryDebits = () => {
     if(categoryDebits?.categoryDebits) {
       setCategoriesDebit(categoryDebits.categoryDebits.items)
@@ -36,23 +37,7 @@ const CategoryDebit = () => {
   }  
 
   const [deleteCategoryDebit] = useMutation(deleteCategoryDebitMutation);
-  
-  const onDelete =  useCallback(async (id: string) => {
-      try {
-        await deleteCategoryDebit({ variables: { id } });
-        loadCategoryDebits()
-        handleToggleModalCategoryDebitDelete()
-      } catch (error) {
-        loadCategoryDebits()
-      }
-      toast.success('Categoria excluída com sucesso!')
-    },
-    [loadCategoryDebits]
-  )
-  const onRemove = (id: string) => {
-    setIsModalCategoryDebitDeleteOpen(true)
-    setIdToDelete(id)
-  }
+
   const handleToggleModalCategoryDebitAdd = useCallback(() => {
     setIsModalCategoryDebitAddOpen(!isModalCategoryDebitAddOpen)
   }, [isModalCategoryDebitAddOpen])
@@ -61,11 +46,35 @@ const CategoryDebit = () => {
     setIsModalCategoryDebitDeleteOpen(!isModalCategoryDebitDeleteOpen)
   }, [isModalCategoryDebitDeleteOpen])
 
+  const refreshAndClose = async () => {
+    handleToggleModalCategoryDebitDelete()
+    await refetch() 
+  }
+  
+  const onDelete =  async (id: string) => {
+      try {
+        await deleteCategoryDebit({ variables: { id } });
+      } catch (error) {
+        toast.success('Erro ao excluir categoria!')
+      }
+      refreshAndClose()
+      toast.success('Categoria excluída com sucesso!')
+    }
+
+  const onRemove = (id: string) => {
+    setIsModalCategoryDebitDeleteOpen(true)
+    setIdToDelete(id)
+  }
+
   useEffect(() => {
     getValueOpen(isModalCategoryDebitAddOpen)
     getValueOpenDelete(isModalCategoryDebitDeleteOpen)
+  }, [isModalCategoryDebitAddOpen, isModalCategoryDebitDeleteOpen])
+
+  useEffect(() => {
     loadCategoryDebits()
-  }, [isModalCategoryDebitAddOpen, isModalCategoryDebitDeleteOpen, categoryDebits?.categoryDebits])
+  }, [categoryDebits?.categoryDebits])
+
   return (
     <S.Container>
       <S.Div>
