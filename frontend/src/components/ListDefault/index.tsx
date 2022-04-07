@@ -5,7 +5,6 @@ import { Default } from '@/gql/models/default'
 import { formatData } from 'src/utils/helpers/index'
 import Select from '../Select'
 import Input from '../Input'
-import Button from '../Button'
 export type TypeListDefault = 'success' | 'error'
 
 export type ListDefaultProps = {

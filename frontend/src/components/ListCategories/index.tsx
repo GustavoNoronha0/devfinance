@@ -3,7 +3,6 @@ export * from './mock'
 import React, { useState, useEffect } from 'react'
 import { Category } from '@/gql/models/category'
 import Input from '../Input'
-import Button from '../Button'
 export type TypeListCategories = 'success' | 'error'
 
 export type ListCategoriesProps = {
