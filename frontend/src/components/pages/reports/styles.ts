@@ -32,6 +32,14 @@ export const Graph = styled.div`
   grid-row-gap: 10px;
 
   align-items: center;
+
+  @media (max-width: 800px) {
+    margin-left: 80px;
+  }
+
+  @media (max-width: 600px) {
+    margin-left: 80px;  
+  }
 `
 
 export const Reports = styled.div`

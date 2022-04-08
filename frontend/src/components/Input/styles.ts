@@ -22,6 +22,9 @@ const inputModifiers = {
       font-size: 10px;
     }
 
+    @media (max-width: 1200px) {
+      width: 130px;
+    }
 
     @media (max-width: 800px) {
       width: 100px;

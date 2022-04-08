@@ -26,6 +26,21 @@ export const Motion = styled(motion.div).attrs({
   width: 100%;
   margin: auto;
   margin-top: 10px;
+
+  @media (max-width: 1200px) {
+    width: 700px;
+    margin-left: 170px;
+  }
+
+  @media (max-width: 800px) {
+    width: 500px;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 600px) {
+    width: 400px;
+    margin-left: 30px;
+  }
 `
 
 export const List = styled.div`
@@ -71,6 +86,14 @@ export const Header = styled.div`
 export const HeaderLeft = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `
 
 export const HeaderRight = styled.div`
@@ -78,9 +101,6 @@ export const HeaderRight = styled.div`
 `
 
 export const Filters = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 `
 
 export const Date = styled.h2`
@@ -141,11 +161,11 @@ export const TableHeader = styled.div`
 export const TableHeadTitle = styled.th``
 
 export const TableHeadDescription = styled.th`
-  margin-left: 25px;
+  margin-left: 50px;
 `
 
 export const TableHeadCategory = styled.th`
-  margin-left: 25px;
+  margin-left: 100px;
 `
 
 export const TableHeadValue = styled.th`
@@ -165,26 +185,101 @@ export const TableItem = styled.tr`
 `
 export const TableTitle = styled.td`
   width: 25px;
+
+
+  @media (max-width: 1200px) {
+    width: 125px;
+  }
+
+  @media (max-width: 800px) {
+    width: 125px;
+  }
+
+  @media (max-width: 600px) {
+    width: 125px;
+  }
 `
 
 export const TableCategory = styled.td`
   width: 80px;
+
+  @media (max-width: 1200px) {
+    width: 160px;
+  }
+
+  @media (max-width: 800px) {
+    width: 160px;
+  }
+
+  @media (max-width: 600px) {
+    width: 160px;
+  }
 `
 
 export const TableValue = styled.td`
   width: 30px;
+
+  @media (max-width: 1200px) {
+    width: 80px;
+  }
+
+  @media (max-width: 800px) {
+    width: 80px;
+  }
+
+  @media (max-width: 600px) {
+    width: 80px;
+  }
 `
 
 export const TableDate = styled.td`
   width: 50px;
+
+  @media (max-width: 1200px) {
+    width: 100px;
+  }
+
+  @media (max-width: 800px) {
+    width: 100px;
+  }
+
+  @media (max-width: 600px) {
+    width: 100px;
+  }
 `
 
 export const TableDescription = styled.td`
   width: 120px;
+
+  @media (max-width: 1200px) {
+    width: 240px;
+  }
+
+  @media (max-width: 800px) {
+    width: 240px;
+  }
+
+  @media (max-width: 800px) {
+    width: 240px;
+  }
 `
 
 export const TableIcon = styled.td`
   width: 40px;
+
+
+  @media (max-width: 1200px) {
+    width: 80px;
+  }
+
+  @media (max-width: 800px) {
+    width: 80px;
+  }
+
+  @media (max-width: 800px) {
+    width: 80px;
+  }
+
   cursor: pointer;
 `
 
@@ -193,5 +288,18 @@ export const IconRemove = styled(FiTrash)`
     font-size: 25px;
     margin-right: 5px;
     color: ${theme.colors.baseColorRed};
+
+    @media (max-width: 1200px) {
+      width: 100px;
+    }
+
+    @media (max-width: 800px) {
+      width: 100px;
+    }
+
+    @media (max-width: 800px) {
+      width: 100px;
+    }
+  
   `}
 `
