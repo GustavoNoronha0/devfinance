@@ -16,12 +16,12 @@ export const Div = styled.div`
 
   @media (max-width: 800px) {
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 200px;
   }
 
   @media (max-width: 600px) {
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 200px;
   }
 `
 
@@ -36,6 +36,20 @@ export const Graph = styled.div`
 
 export const Reports = styled.div`
   margin-left: 50px;
+
+  @media (max-width: 800px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 600px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
 `
 
 export const ReportsValue = styled.h4`
