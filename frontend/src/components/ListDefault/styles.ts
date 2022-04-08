@@ -38,8 +38,8 @@ export const Motion = styled(motion.div).attrs({
   }
 
   @media (max-width: 600px) {
-    width: 400px;
-    margin-left: 30px;
+    width: 340px;
+    margin-left: 60px;
   }
 `
 
@@ -87,13 +87,7 @@ export const HeaderLeft = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media (max-width: 800px) {
-    flex-direction: column;
-  }
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
+  overflow: auto;
 `
 
 export const HeaderRight = styled.div`

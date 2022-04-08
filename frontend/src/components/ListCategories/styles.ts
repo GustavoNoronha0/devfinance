@@ -38,8 +38,8 @@ export const Motion = styled(motion.div).attrs({
   }
 
   @media (max-width: 600px) {
-    width: 400px;
-    margin-left: 30px;
+    width: 340px;
+    margin-left: 60px;
   }
 `
 
@@ -114,6 +114,8 @@ export const Content = styled.div`
   align-items: center;
   position: relative;
   min-height: 100px;
+
+  overflow: auto;
 `
 
 export const CountParticipants = styled.h4`
