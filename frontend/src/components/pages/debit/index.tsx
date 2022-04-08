@@ -50,11 +50,11 @@ const Debit = () => {
   
   const onDelete =  async (id: string) => {
       try {
+        handleToggleModalDebitDelete()
         await deleteDebit({ variables: { id } });
       } catch (error) {
         toast.success('Erro ao excluir categoria!')
       }
-      handleToggleModalDebitDelete()
       await refetch()
       toast.success('Categoria excluída com sucesso!')
     }

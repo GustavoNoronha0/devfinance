@@ -50,11 +50,11 @@ const CategoryDebit = () => {
   
   const onDelete =  async (id: string) => {
       try {
+        handleToggleModalCategoryDebitDelete()
         await deleteCategoryDebit({ variables: { id } });
       } catch (error) {
         toast.success('Erro ao excluir categoria!')
       }
-      handleToggleModalCategoryDebitDelete()
       await refetch()
       toast.success('Categoria excluída com sucesso!')
     }
@@ -67,7 +67,7 @@ const CategoryDebit = () => {
   useEffect(() => {
     getValueOpen(isModalCategoryDebitAddOpen)
     getValueOpenDelete(isModalCategoryDebitDeleteOpen)
-  }, [isModalCategoryDebitAddOpen, isModalCategoryDebitDeleteOpen])
+  }, [isModalCategoryDebitAddOpen, isModalCategoryDebitDeleteOpen, ])
 
   const filters = async (initialDate?: Date, finalDate?: Date, other?: string) => {
     const queryParams = {

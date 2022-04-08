@@ -50,11 +50,11 @@ const Receivement = () => {
   
   const onDelete =  async (id: string) => {
       try {
+        handleToggleModalReceivementDelete()
         await deleteReceivement({ variables: { id } });
       } catch (error) {
         toast.success('Erro ao excluir categoria!')
       }
-      handleToggleModalReceivementDelete()
       await refetch()
       toast.success('Categoria excluída com sucesso!')
     }
