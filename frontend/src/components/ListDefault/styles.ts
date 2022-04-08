@@ -184,7 +184,7 @@ export const TableItem = styled.tr`
   align-items: center;
 `
 export const TableTitle = styled.td`
-  width: 25px;
+  width: 50px;
 
 
   @media (max-width: 1200px) {
@@ -249,7 +249,7 @@ export const TableDate = styled.td`
 `
 
 export const TableDescription = styled.td`
-  width: 120px;
+  width: 200px;
 
   @media (max-width: 1200px) {
     width: 240px;

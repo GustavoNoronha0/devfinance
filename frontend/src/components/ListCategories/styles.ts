@@ -165,11 +165,11 @@ export const TableItem = styled.tr`
   align-items: center;
 `
 export const TableTitle = styled.td`
-  width: 40px;
+  width: 140px;
 `
 
 export const TableDescription = styled.td`
-  width: 120px;
+  width: 200px;
 `
 
 export const TableIcon = styled.td`
