@@ -21,6 +21,15 @@ const inputModifiers = {
     ::-ms-input-placeholder {
       font-size: 10px;
     }
+
+
+    @media (max-width: 800px) {
+      width: 100px;
+    }
+
+    @media (max-width: 600px) {
+      width: 100px;
+    }
   `
 }
 

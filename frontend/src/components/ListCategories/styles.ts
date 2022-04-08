@@ -26,6 +26,21 @@ export const Motion = styled(motion.div).attrs({
   width: 100%;
   margin: auto;
   margin-top: 10px;
+
+  @media (max-width: 1200px) {
+    width: 700px;
+    margin-left: 170px;
+  }
+
+  @media (max-width: 800px) {
+    width: 500px;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 600px) {
+    width: 400px;
+    margin-left: 30px;
+  }
 `
 
 export const List = styled.div`

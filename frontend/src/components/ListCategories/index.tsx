@@ -47,10 +47,10 @@ const ListCategories = ({
                       isFilter={true}
                     />
                     <Input
-                      label="Titulo ou Descricao"
+                      label="Outros"
                       type="text"
                       onInputChange={setOther}
-                      placeholder="Digite o Titulo ou Descricao"
+                      placeholder="Titulo ou Descricao"
                       isFilter={true}
                     />
                 </S.HeaderLeft>
